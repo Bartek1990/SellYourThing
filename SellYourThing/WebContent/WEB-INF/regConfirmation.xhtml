@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+<head>
+  <title><ui:insert name="title">Sell Your Thing</ui:insert></title>
+  <link rel="stylesheet" type="text/css" href="../css/main.css" />
+</head>
+
+<body>
+<h:form>
+	<h:messages errorClass="errorMessage" infoClass="infoMessage"
+            warnClass="warnMessage"></h:messages>
+    <h:panelGrid columns="2">
+        <h:outputText value="Imie :"></h:outputText>
+        <h:outputText value="#{regBean.username}"></h:outputText>
+        
+		<h:outputText value="Nazwisko :"></h:outputText>
+        <h:outputText value="#{regBean.userforname}"></h:outputText>	
+            
+        <h:outputText value="Hasło :"></h:outputText>
+        <h:outputText value="#{regBean.password}"></h:outputText>
+        
+		<h:outputText value="PESEL :"></h:outputText>
+        <h:outputText value="#{regBean.pesel}"></h:outputText>
+        
+        <h:outputText value="Data urodzenia :"></h:outputText>
+       	<h:outputText value="#{regBean.dob}"></h:outputText>
+            
+        <h:outputText value="Email :"></h:outputText>
+       	<h:outputText value="#{regBean.email}"></h:outputText>
+            
+        <h:outputText value="Ulica :"></h:outputText>
+       	<h:outputText value="#{regBean.street}"></h:outputText>
+       	
+ 		<h:outputText value="Kod pocztowy :"></h:outputText>
+       	<h:outputText value="#{regBean.zip}"></h:outputText>
+       	
+        <h:outputText value="Miasto :"></h:outputText>
+       	<h:outputText value="#{regBean.city}"></h:outputText>
+       
+        <h:outputText value="Województwo :"></h:outputText>
+        <h:outputText value="#{regBean.province}"></h:outputText>
+        
+        <h:outputText value="Państwo :"></h:outputText>
+        <h:outputText value="#{regBean.country}"></h:outputText>
+
+    </h:panelGrid>
+</h:form>
+</body>
+
+</html>
