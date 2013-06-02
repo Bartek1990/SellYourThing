@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:body>
+		 <h:form>
+	        <center>
+	            <h:messages errorClass="errorMessage" infoClass="infoMessage"
+	                warnClass="warnMessage"></h:messages>
+	            <h:panelGrid columns="2">
+	                <h:outputText value="Email : "></h:outputText>
+					<h:inputText id="email" value="#{loginBean.email}"></h:inputText>
+	                
+	                <h:outputText value="Hasło : "></h:outputText>
+	                <h:inputSecret id="password" value="#{loginBean.password}"></h:inputSecret>
+	 
+	                <h:commandButton value="Zaloguj" action="#{loginBean.login}"
+	                    type="submit"></h:commandButton> 
+	 
+	                <h:commandLink value="Zarejestruj" action="Registration.xhtml"></h:commandLink>
+	                <h:commandLink value="Zapomniałeś hasła?"></h:commandLink>
+	            </h:panelGrid>
+	        </center>
+	    </h:form>
+	</h:body>
+</html>

@@ -54,7 +54,7 @@ public class RegistrationEAO {
             address.setUsers(users);
 
             //Wyci�gam dane na temat grup z bazy
-            String groupname = "admin";
+            String groupname = "Administrator";
 
             Query query = this.entityManager.createQuery(
                     "SELECT c FROM Groups c WHERE c.name=?1");

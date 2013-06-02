@@ -6,33 +6,39 @@
     xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>admin</from-outcome>
+			<to-view-id>/admin/AdminDashboard.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>moderator</from-outcome>
+			<to-view-id>/mod/ModDashboard.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>user</from-outcome>
+			<to-view-id>/user/UsrDashboard.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>failure</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
-<navigation-rule>
-   <from-view-id>*</from-view-id>
-   <navigation-case>
-	<from-outcome>registrationPage</from-outcome>
-	<to-view-id>/registration.xhtml</to-view-id>
-   </navigation-case>
-</navigation-rule>
-<navigation-rule>
-    <from-view-id>/index.xhtml</from-view-id>
-    <navigation-case>
-        <from-outcome>home</from-outcome>
-        <to-view-id>/index.xhtml</to-view-id>
-    </navigation-case>
-    <navigation-case>
-        <from-action>#{userBean.logout}</from-action>
-        <from-outcome>home</from-outcome>
-        <to-view-id>/index.xhtml</to-view-id>
-    </navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<display-name>registration.xhtml</display-name>
-	<from-view-id>/registration.xhtml</from-view-id>
-	<navigation-case>
-		<from-outcome>success</from-outcome>
-		<to-view-id>/index.xhtml</to-view-id>
-	</navigation-case>
-</navigation-rule>
+
 
 </faces-config>
