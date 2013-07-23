@@ -17,7 +17,7 @@ public class Groups implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="group_id")
-	private int groupId;
+	private Integer groupId;
 
 	@Column(name="acc_level")
 	private int accLevel;
@@ -25,17 +25,17 @@ public class Groups implements Serializable {
 	private String name;
 
 	//bi-directional many-to-one association to User
-	@OneToMany(mappedBy="groups", cascade={CascadeType.ALL})
+	@OneToMany(mappedBy="group")
 	private List<User> users;
 
 	public Groups() {
 	}
 
-	public int getGroupId() {
+	public Integer getGroupId() {
 		return this.groupId;
 	}
 
-	public void setGroupId(int groupId) {
+	public void setGroupId(Integer groupId) {
 		this.groupId = groupId;
 	}
 

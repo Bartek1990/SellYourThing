@@ -19,7 +19,7 @@ public class Address implements Serializable {
 	private Integer addressId;
 
 	@Column(name="building_nr")
-	private Integer buildingNr;
+	private int buildingNr;
 
 	private String city;
 
@@ -33,7 +33,7 @@ public class Address implements Serializable {
 	private String street;
 
 	//bi-directional many-to-one association to User
-	@OneToMany(mappedBy="address", cascade={CascadeType.ALL})
+	@OneToMany(mappedBy="address", cascade = CascadeType.PERSIST)
 	private List<User> users;
 
 	public Address() {
@@ -47,11 +47,11 @@ public class Address implements Serializable {
 		this.addressId = addressId;
 	}
 
-	public Integer getBuildingNr() {
+	public int getBuildingNr() {
 		return this.buildingNr;
 	}
 
-	public void setBuildingNr(Integer buildingNr) {
+	public void setBuildingNr(int buildingNr) {
 		this.buildingNr = buildingNr;
 	}
 

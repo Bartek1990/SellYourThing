@@ -123,7 +123,7 @@ public class RegistrationBean {
 	    }
 		else if(!email.equals(confirmEmail))
 		{
-	        throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Adresy email nie pasuj�!", null));
+	        throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Adresy email nie pasują!", null));
 		}
 	}
 	private void addMessage(FacesMessage message)
@@ -134,10 +134,10 @@ public class RegistrationBean {
 	{
 		if(service.persistUser(this))
 		{
-			addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "U�ytkownik zarejestrowany poprawnie!", null));
+			addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Użytkownik zarejestrowany poprawnie!", null));
 	        return "success";
 		}
-		addMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR, "B��d przy rejestracji u�ytkownika!", null));
+		addMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błąd przy rejestracji użytkownika!", null));
         return "failure";
 	}
 	

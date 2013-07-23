@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -16,7 +17,7 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="user_id")
-	private int userId;
+	private Integer userId;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_of_birth")
@@ -36,24 +37,32 @@ public class User implements Serializable {
 	@Column(name="register_date")
 	private Date registerDate;
 
+	//bi-directional many-to-many association to Auction
+	@ManyToMany(mappedBy="users")
+	private List<Auction> auctions;
+
+	//bi-directional many-to-one association to Biding
+	@OneToMany(mappedBy="user")
+	private List<Biding> bidings;
+
 	//bi-directional many-to-one association to Address
-	@ManyToOne(cascade={CascadeType.ALL})
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="Addressaddress_id")
 	private Address address;
 
 	//bi-directional many-to-one association to Group
-	@ManyToOne(cascade={CascadeType.ALL})
+	@ManyToOne
 	@JoinColumn(name="Groupgroup_id")
-	private Groups groups;
+	private Groups group;
 
 	public User() {
 	}
 
-	public int getUserId() {
+	public Integer getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
@@ -113,6 +122,22 @@ public class User implements Serializable {
 		this.registerDate = registerDate;
 	}
 
+	public List<Auction> getAuctions() {
+		return this.auctions;
+	}
+
+	public void setAuctions(List<Auction> auctions) {
+		this.auctions = auctions;
+	}
+
+	public List<Biding> getBidings() {
+		return this.bidings;
+	}
+
+	public void setBidings(List<Biding> bidings) {
+		this.bidings = bidings;
+	}
+
 	public Address getAddress() {
 		return this.address;
 	}
@@ -121,12 +146,12 @@ public class User implements Serializable {
 		this.address = address;
 	}
 
-	public Groups getGroups() {
-		return this.groups;
+	public Groups getGroup() {
+		return this.group;
 	}
 
-	public void setGroups(Groups groups) {
-		this.groups = groups;
+	public void setGroup(Groups group) {
+		this.group = group;
 	}
 
 }

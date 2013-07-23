@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Sell Your Thing</title>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="/WEB-INF/template/mainLayout.xhtml">
+            <ui:define name="content">
+                <h:outputText value="Tworzenie nowej aukcji" styleClass="header"/>
+                <h:form enctype="multipart/form-data">
+                    <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"/>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Tytuł :"/>
+                        <h:inputText id="title" value="#{aucBean.title}" required="true" requiredMessage="Nie podałeś tytułu aukcji!"/>
+                        <h:outputText value="Opis :"/>
+                        <h:inputText id="description" value="#{aucBean.description}" required="true" requiredMessage="Nie podałeś opisu aukcji!"/>
+                        <h:outputText value="Typ :"/>
+                        <h:inputText id="type" value="#{aucBean.type}" required="true" requiredMessage="Nie podałeś typu aukcji!"/>
+                        <h:outputText value="Koniec Aukcji :"/>
+                        <h:inputText id="expDate" value="#{aucBean.expDate}" required="true" requiredMessage="Nie podałeś daty zakończenia aukcji!" converterMessage="Zły format daty, wymagany format to: DD/MM/YYYY">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:inputText>
+                        <h:outputText value="ID subkategorii (temp) :"/>
+                        <h:outputText value="Status : (temp)"/>
+                        <h:inputText id="status" value="#{aucBean.status}" required="true" requiredMessage="Nie podałeś statusu!"/>
+						
+                        <h:inputText id="subcategoryId" value="#{aucBean.subcategoryId}" required="true" requiredMessage="Nie podałeś subkategorii!"/>
+                        <h:commandButton type="submit" value="Umieść Ogłoszenie" action="#{aucBean.addAuction}"/>
+                    </h:panelGrid>
+                </h:form>
+                <h:link value="Dodaj obrazki!" outcome="addImg"></h:link>
+
+        </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

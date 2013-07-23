@@ -53,7 +53,7 @@ public class RegistrationEAO {
 
             address.setUsers(users);
 
-            //Wyci�gam dane na temat grup z bazy
+            //Wyciągam dane na temat grup z bazy
             String groupname = "Administrator";
 
             Query query = this.entityManager.createQuery(
@@ -61,7 +61,7 @@ public class RegistrationEAO {
             query.setParameter("1", groupname);
 
             //List<Groups> groups = com.utils.Util.castList(Groups.class, query.getResultList());
-            user.setGroups((Groups) query.getSingleResult());
+            user.setGroup((Groups) query.getSingleResult());
 
             entityManager.persist(user);
             return true;
