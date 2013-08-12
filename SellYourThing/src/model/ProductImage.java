@@ -14,9 +14,8 @@ public class ProductImage implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="img_id")
-	private Integer imgId;
+	private int imgId;
 
 	private String title;
 
@@ -30,11 +29,11 @@ public class ProductImage implements Serializable {
 	public ProductImage() {
 	}
 
-	public Integer getImgId() {
+	public int getImgId() {
 		return this.imgId;
 	}
 
-	public void setImgId(Integer imgId) {
+	public void setImgId(int imgId) {
 		this.imgId = imgId;
 	}
 

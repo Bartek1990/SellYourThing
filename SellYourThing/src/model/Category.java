@@ -15,24 +15,23 @@ public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="cat_id")
-	private Integer catId;
+	private int catId;
 
 	private String name;
 
 	//bi-directional many-to-one association to Subcategory
-	@OneToMany(mappedBy="category")
+	@OneToMany(mappedBy="category", fetch=FetchType.EAGER)
 	private List<Subcategory> subcategories;
 
 	public Category() {
 	}
 
-	public Integer getCatId() {
+	public int getCatId() {
 		return this.catId;
 	}
 
-	public void setCatId(Integer catId) {
+	public void setCatId(int catId) {
 		this.catId = catId;
 	}
 

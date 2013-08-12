@@ -15,9 +15,8 @@ public class AuctionBot implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="bot_id")
-	private Integer botId;
+	private int botId;
 
 	@Column(name="interval_b")
 	private double intervalB;
@@ -28,17 +27,17 @@ public class AuctionBot implements Serializable {
 	private double step;
 
 	//bi-directional many-to-one association to Biding
-	@OneToMany(mappedBy="auctionBot")
+	@OneToMany(mappedBy="auctionBot", fetch=FetchType.EAGER)
 	private List<Biding> bidings;
 
 	public AuctionBot() {
 	}
 
-	public Integer getBotId() {
+	public int getBotId() {
 		return this.botId;
 	}
 
-	public void setBotId(Integer botId) {
+	public void setBotId(int botId) {
 		this.botId = botId;
 	}
 

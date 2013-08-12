@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
 import java.util.Date;
 import java.util.List;
 
@@ -16,9 +15,8 @@ public class Auction implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="auction_id")
-	private Integer auctionId;
+	private int auctionId;
 
 	private String description;
 
@@ -33,12 +31,12 @@ public class Auction implements Serializable {
 	private String type;
 
 	//bi-directional many-to-one association to Subcategory
-	@ManyToOne(cascade={CascadeType.ALL})
+	@ManyToOne
 	@JoinColumn(name="Subcategoriessub_id")
 	private Subcategory subcategory;
 
 	//bi-directional many-to-many association to User
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(
 		name="auction_user"
 		, joinColumns={
@@ -50,31 +48,30 @@ public class Auction implements Serializable {
 		)
 	private List<User> users;
 
-
 	//bi-directional many-to-one association to Biding
-	@OneToMany(mappedBy="auction")
+	@OneToMany(mappedBy="auction", fetch=FetchType.EAGER)
 	private List<Biding> bidings;
 
 	//bi-directional many-to-one association to Comment
-	@OneToMany(mappedBy="auction")
+	@OneToMany(mappedBy="auction", fetch=FetchType.EAGER)
 	private List<Comment> comments;
 
 	//bi-directional many-to-one association to Grade
-	@OneToMany(mappedBy="auction")
+	@OneToMany(mappedBy="auction", fetch=FetchType.EAGER)
 	private List<Grade> grades;
 
 	//bi-directional many-to-one association to ProductImage
-	@OneToMany(mappedBy="auction", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy="auction", fetch=FetchType.EAGER)
 	private List<ProductImage> productImages;
 
 	public Auction() {
 	}
 
-	public Integer getAuctionId() {
+	public int getAuctionId() {
 		return this.auctionId;
 	}
 
-	public void setAuctionId(Integer auctionId) {
+	public void setAuctionId(int auctionId) {
 		this.auctionId = auctionId;
 	}
 

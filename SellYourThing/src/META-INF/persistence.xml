@@ -9,10 +9,9 @@
 		<class>model.Category</class>
 		<class>model.Comment</class>
 		<class>model.Grade</class>
-		<class>model.Groups</class>
+		<class>model.Group</class>
 		<class>model.ProductImage</class>
 		<class>model.Subcategory</class>
 		<class>model.User</class>
-		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 	</persistence-unit>
 </persistence>

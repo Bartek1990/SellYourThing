@@ -13,9 +13,8 @@ public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="comment_id")
-	private Integer commentId;
+	private int commentId;
 
 	private String content;
 
@@ -27,11 +26,11 @@ public class Comment implements Serializable {
 	public Comment() {
 	}
 
-	public Integer getCommentId() {
+	public int getCommentId() {
 		return this.commentId;
 	}
 
-	public void setCommentId(Integer commentId) {
+	public void setCommentId(int commentId) {
 		this.commentId = commentId;
 	}
 

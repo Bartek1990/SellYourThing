@@ -13,9 +13,8 @@ public class Grade implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="grade_id")
-	private Integer gradeId;
+	private int gradeId;
 
 	@Column(name="grade_lvl")
 	private int gradeLvl;
@@ -28,11 +27,11 @@ public class Grade implements Serializable {
 	public Grade() {
 	}
 
-	public Integer getGradeId() {
+	public int getGradeId() {
 		return this.gradeId;
 	}
 
-	public void setGradeId(Integer gradeId) {
+	public void setGradeId(int gradeId) {
 		this.gradeId = gradeId;
 	}
 

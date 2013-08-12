@@ -122,6 +122,7 @@ public class AuctionBean {
     }
     public void addImages() 
     {
+    	System.out.println("Kompletna sraka");
         ProductImage img = new ProductImage();
         img.setTitle(imgName);
         img.setUrl("/user/upload/"+namesImg.get(namesImg.size()-1)+"_image.jpg");

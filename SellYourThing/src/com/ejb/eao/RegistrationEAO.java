@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.Address;
-import model.Groups;
+import model.Group;
 import model.User;
 
 import com.beans.RegistrationBean;
@@ -61,7 +61,7 @@ public class RegistrationEAO {
             query.setParameter("1", groupname);
 
             //List<Groups> groups = com.utils.Util.castList(Groups.class, query.getResultList());
-            user.setGroup((Groups) query.getSingleResult());
+            user.setGroup((Group) query.getSingleResult());
 
             entityManager.persist(user);
             return true;

@@ -13,36 +13,35 @@ public class Biding implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="biding_id")
-	private Integer bidingId;
+	private int bidingId;
 
 	@Column(name="current_price")
 	private double currentPrice;
-
-	//bi-directional many-to-one association to Auction
-	@ManyToOne
-	@JoinColumn(name="Auctionauction_id")
-	private Auction auction;
-
-	//bi-directional many-to-one association to AuctionBot
-	@ManyToOne
-	@JoinColumn(name="Auction_botbot_id")
-	private AuctionBot auctionBot;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="Useruser_id")
 	private User user;
 
+	//bi-directional many-to-one association to AuctionBot
+	@ManyToOne
+	@JoinColumn(name="Auction_botbot_id")
+	private AuctionBot auctionBot;
+
+	//bi-directional many-to-one association to Auction
+	@ManyToOne
+	@JoinColumn(name="Auctionauction_id")
+	private Auction auction;
+
 	public Biding() {
 	}
 
-	public Integer getBidingId() {
+	public int getBidingId() {
 		return this.bidingId;
 	}
 
-	public void setBidingId(Integer bidingId) {
+	public void setBidingId(int bidingId) {
 		this.bidingId = bidingId;
 	}
 
@@ -54,12 +53,12 @@ public class Biding implements Serializable {
 		this.currentPrice = currentPrice;
 	}
 
-	public Auction getAuction() {
-		return this.auction;
+	public User getUser() {
+		return this.user;
 	}
 
-	public void setAuction(Auction auction) {
-		this.auction = auction;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public AuctionBot getAuctionBot() {
@@ -70,12 +69,12 @@ public class Biding implements Serializable {
 		this.auctionBot = auctionBot;
 	}
 
-	public User getUser() {
-		return this.user;
+	public Auction getAuction() {
+		return this.auction;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setAuction(Auction auction) {
+		this.auction = auction;
 	}
 
 }

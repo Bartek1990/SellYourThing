@@ -15,15 +15,14 @@ public class Subcategory implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="sub_id")
-	private Integer subId;
+	private int subId;
 
 	@Column(name="sub_name")
 	private String subName;
 
 	//bi-directional many-to-one association to Auction
-	@OneToMany(mappedBy="subcategory", cascade={CascadeType.ALL})
+	@OneToMany(mappedBy="subcategory", fetch=FetchType.EAGER)
 	private List<Auction> auctions;
 
 	//bi-directional many-to-one association to Category
@@ -34,11 +33,11 @@ public class Subcategory implements Serializable {
 	public Subcategory() {
 	}
 
-	public Integer getSubId() {
+	public int getSubId() {
 		return this.subId;
 	}
 
-	public void setSubId(Integer subId) {
+	public void setSubId(int subId) {
 		this.subId = subId;
 	}
 

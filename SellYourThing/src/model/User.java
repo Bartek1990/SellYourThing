@@ -15,9 +15,8 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="user_id")
-	private Integer userId;
+	private int userId;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_of_birth")
@@ -38,31 +37,31 @@ public class User implements Serializable {
 	private Date registerDate;
 
 	//bi-directional many-to-many association to Auction
-	@ManyToMany(mappedBy="users")
+	@ManyToMany(mappedBy="users", fetch=FetchType.EAGER)
 	private List<Auction> auctions;
 
 	//bi-directional many-to-one association to Biding
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
 	private List<Biding> bidings;
 
 	//bi-directional many-to-one association to Address
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name="Addressaddress_id")
 	private Address address;
 
 	//bi-directional many-to-one association to Group
 	@ManyToOne
 	@JoinColumn(name="Groupgroup_id")
-	private Groups group;
+	private Group group;
 
 	public User() {
 	}
 
-	public Integer getUserId() {
+	public int getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
@@ -146,11 +145,11 @@ public class User implements Serializable {
 		this.address = address;
 	}
 
-	public Groups getGroup() {
+	public Group getGroup() {
 		return this.group;
 	}
 
-	public void setGroup(Groups group) {
+	public void setGroup(Group group) {
 		this.group = group;
 	}
 
