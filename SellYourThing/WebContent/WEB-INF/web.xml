@@ -23,16 +23,19 @@
  </servlet>
  <servlet-mapping>
   <servlet-name>Faces Servlet</servlet-name>
-  <url-pattern>/faces/*</url-pattern>
+  <url-pattern>*.xhtml</url-pattern>
  </servlet-mapping>
  <login-config>
   <auth-method>FORM</auth-method>
   <realm-name>SellYourThingRealm</realm-name>
   <form-login-config>
-   <form-login-page>/faces/login.xhtml</form-login-page>
-   <form-error-page>/faces/login.xhtml</form-error-page>
+   <form-login-page>/login.xhtml</form-login-page>
+   <form-error-page>/login.xhtml</form-error-page>
   </form-login-config>
  </login-config>
+ <welcome-file-list>
+  <welcome-file>login.xhtml</welcome-file>
+ </welcome-file-list>
  <security-role>
   <role-name>Administrator</role-name>
  </security-role>
@@ -77,6 +80,6 @@
   </security-constraint>
   <error-page>
   <error-code>403</error-code>
-  <location>/faces/AccessDenied.xhtml</location>
+  <location>/AccessDenied.xhtml</location>
 </error-page>
 </web-app>
