@@ -15,6 +15,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="user_id")
 	private int userId;
 
@@ -37,22 +38,22 @@ public class User implements Serializable {
 	private Date registerDate;
 
 	//bi-directional many-to-many association to Auction
-	@ManyToMany(mappedBy="users", fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="users", cascade={CascadeType.ALL})
 	private List<Auction> auctions;
 
 	//bi-directional many-to-one association to Biding
-	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="user")
 	private List<Biding> bidings;
 
 	//bi-directional many-to-one association to Address
-	@ManyToOne
+	@ManyToOne(cascade={CascadeType.ALL})
 	@JoinColumn(name="Addressaddress_id")
 	private Address address;
 
-	//bi-directional many-to-one association to Group
+	//bi-directional many-to-one association to GroupLvl
 	@ManyToOne
 	@JoinColumn(name="Groupgroup_id")
-	private Group group;
+	private GroupLvl groupLvl;
 
 	public User() {
 	}
@@ -145,12 +146,12 @@ public class User implements Serializable {
 		this.address = address;
 	}
 
-	public Group getGroup() {
-		return this.group;
+	public GroupLvl getGroupLvl() {
+		return this.groupLvl;
 	}
 
-	public void setGroup(Group group) {
-		this.group = group;
+	public void setGroupLvl(GroupLvl groupLvl) {
+		this.groupLvl = groupLvl;
 	}
 
 }

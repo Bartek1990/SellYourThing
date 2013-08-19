@@ -15,6 +15,7 @@ public class AuctionBot implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="bot_id")
 	private int botId;
 
@@ -27,7 +28,7 @@ public class AuctionBot implements Serializable {
 	private double step;
 
 	//bi-directional many-to-one association to Biding
-	@OneToMany(mappedBy="auctionBot", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="auctionBot")
 	private List<Biding> bidings;
 
 	public AuctionBot() {

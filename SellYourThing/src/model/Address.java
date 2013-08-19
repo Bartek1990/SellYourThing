@@ -14,6 +14,7 @@ public class Address implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="address_id")
 	private int addressId;
 
@@ -32,7 +33,7 @@ public class Address implements Serializable {
 	private String street;
 
 	//bi-directional many-to-one association to User
-	@OneToMany(mappedBy="address", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="address")
 	private List<User> users;
 
 	public Address() {

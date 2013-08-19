@@ -15,6 +15,7 @@ public class Auction implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="auction_id")
 	private int auctionId;
 
@@ -36,7 +37,7 @@ public class Auction implements Serializable {
 	private Subcategory subcategory;
 
 	//bi-directional many-to-many association to User
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(cascade={CascadeType.ALL})
 	@JoinTable(
 		name="auction_user"
 		, joinColumns={
@@ -49,19 +50,19 @@ public class Auction implements Serializable {
 	private List<User> users;
 
 	//bi-directional many-to-one association to Biding
-	@OneToMany(mappedBy="auction", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="auction")
 	private List<Biding> bidings;
 
 	//bi-directional many-to-one association to Comment
-	@OneToMany(mappedBy="auction", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="auction")
 	private List<Comment> comments;
 
 	//bi-directional many-to-one association to Grade
-	@OneToMany(mappedBy="auction", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="auction")
 	private List<Grade> grades;
 
 	//bi-directional many-to-one association to ProductImage
-	@OneToMany(mappedBy="auction", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="auction")
 	private List<ProductImage> productImages;
 
 	public Auction() {

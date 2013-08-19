@@ -10,8 +10,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.Address;
-import model.Group;
 import model.User;
+import model.GroupLvl;
 
 import com.beans.RegistrationBean;
 
@@ -50,18 +50,14 @@ public class RegistrationEAO {
             user.setAddress(address);
             List<User> users = new ArrayList<User>();
             users.add(user);
-
             address.setUsers(users);
 
-            //Wyciągam dane na temat grup z bazy
+            //WyciÄ…gam dane na temat grup z bazy
             String groupname = "Administrator";
 
-            Query query = this.entityManager.createQuery(
-                    "SELECT c FROM Groups c WHERE c.name=?1");
+            Query query = this.entityManager.createQuery("SELECT c FROM GroupLvl c WHERE c.name=?1");
             query.setParameter("1", groupname);
-
-            //List<Groups> groups = com.utils.Util.castList(Groups.class, query.getResultList());
-            user.setGroup((Group) query.getSingleResult());
+            user.setGroupLvl((GroupLvl) query.getSingleResult());
 
             entityManager.persist(user);
             return true;

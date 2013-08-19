@@ -9,7 +9,7 @@
 		<class>model.Category</class>
 		<class>model.Comment</class>
 		<class>model.Grade</class>
-		<class>model.Group</class>
+		<class>model.GroupLvl</class>
 		<class>model.ProductImage</class>
 		<class>model.Subcategory</class>
 		<class>model.User</class>

@@ -15,13 +15,14 @@ public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="cat_id")
 	private int catId;
 
 	private String name;
 
 	//bi-directional many-to-one association to Subcategory
-	@OneToMany(mappedBy="category", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="category")
 	private List<Subcategory> subcategories;
 
 	public Category() {

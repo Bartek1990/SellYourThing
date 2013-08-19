@@ -15,6 +15,7 @@ public class Subcategory implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="sub_id")
 	private int subId;
 
@@ -22,7 +23,7 @@ public class Subcategory implements Serializable {
 	private String subName;
 
 	//bi-directional many-to-one association to Auction
-	@OneToMany(mappedBy="subcategory", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="subcategory")
 	private List<Auction> auctions;
 
 	//bi-directional many-to-one association to Category
