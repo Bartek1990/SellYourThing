@@ -10,24 +10,9 @@
 		<display-name>login.xhtml</display-name>
 		<from-view-id>/login.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>admin</from-outcome>
-			<to-view-id>/admin/AdminDashboard.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>login.xhtml</display-name>
-		<from-view-id>/login.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>moderator</from-outcome>
-			<to-view-id>/mod/ModDashboard.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>login.xhtml</display-name>
-		<from-view-id>/login.xhtml</from-view-id>
-		<navigation-case>
 			<from-outcome>user</from-outcome>
 			<to-view-id>/user/UsrDashboard.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -38,44 +23,23 @@
 			<to-view-id>/login.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-<navigation-rule>
-    <from-view-id>/user/upload/auctionCreation.xhtml</from-view-id>
-    <navigation-case>
-        <from-outcome>addImg</from-outcome>
-        <to-view-id>/user/upload/uploadImage.xhtml</to-view-id>
-    </navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<display-name>user/upload/uploadImage.xhtml</display-name>
-	<from-view-id>/user/upload/uploadImage.xhtml</from-view-id>
-	<navigation-case>
-		<from-outcome>back</from-outcome>
-		<to-view-id>/user/upload/auctionCreation.xhtml</to-view-id>
-	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<display-name>admin/AdminDashboard.xhtml</display-name>
-	<from-view-id>/admin/AdminDashboard.xhtml</from-view-id>
-	<navigation-case>
-		<from-outcome>auctionCre</from-outcome>
-		<to-view-id>/user/upload/auctionCreation.xhtml</to-view-id>
-	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<display-name>mod/ModDashboard.xhtml</display-name>
-	<from-view-id>/mod/ModDashboard.xhtml</from-view-id>
-	<navigation-case>
-		<from-outcome>auctionCre</from-outcome>
-		<to-view-id>/user/upload/auctionCreation.xhtml</to-view-id>
-	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<display-name>user/UsrDashboard.xhtml</display-name>
-	<from-view-id>/user/UsrDashboard.xhtml</from-view-id>
-	<navigation-case>
-		<from-outcome>auctionCre</from-outcome>
-		<to-view-id>/user/upload/auctionCreation.xhtml</to-view-id>
-	</navigation-case>
-</navigation-rule>
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>admin</from-outcome>
+			<to-view-id>/admin/AdminDashboard.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>moderator</from-outcome>
+			<to-view-id>/mod/ModDashboard.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

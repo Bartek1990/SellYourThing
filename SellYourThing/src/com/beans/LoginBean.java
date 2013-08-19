@@ -4,12 +4,14 @@ import java.security.Principal;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @ManagedBean(name="loginBean")
+@SessionScoped
 public class LoginBean {
 	private String email;
 	private String password;
@@ -41,6 +43,7 @@ public class LoginBean {
 	{
 		String message = "";
 		String navTo = "";
+		
 		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		try {
 			request.login(email, password);
@@ -76,6 +79,7 @@ public class LoginBean {
         if(session != null){
             session.invalidate();
         }
+        System.out.println("INFO Z LOGINBEAN: wylogowano");
         FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/login.xhtml");
 	}
 	
