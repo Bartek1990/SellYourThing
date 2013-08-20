@@ -115,7 +115,7 @@ public class AuctionBean {
     }
     public String genNanTime()
     {	
-    	
+    	System.out.println("getNanTime");
     	String nano = System.nanoTime()+"";
     	namesImg.add(nano);
     	return nano;
@@ -126,6 +126,7 @@ public class AuctionBean {
         ProductImage img = new ProductImage();
         img.setTitle(imgName);
         img.setUrl("/user/upload/"+namesImg.get(namesImg.size()-1)+"_image.jpg");
+        
         productImages.add(img);
        
         addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Dodano obrazek "+imgName+"!", null));
