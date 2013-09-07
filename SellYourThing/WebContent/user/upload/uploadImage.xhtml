@@ -1,18 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:corejsf="http://corejsf.com">
+      xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
         <h:form enctype="multipart/form-data">
-            <h:outputText value="Tytuł obrazka: " />
-            <corejsf:upload target="user/upload/#{aucBean.genNanTime()}_image.jpg" /><br/><br/>
+            <h:outputText value="Tytuł‚ obrazka: " />
+            <h:inputFile value="#{aucBean.image}"/>
             <h:commandButton value="Wyślij!" action="#{aucBean.addImages()}" />
-            <h:link value="Powrót" outcome="back"></h:link>
+            <h:link value="PowrĂłt" outcome="back"></h:link>
         </h:form>
-        
     </h:body>
 </html>
+

@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -163,5 +165,4 @@ public class Auction implements Serializable {
 	public void setProductImages(List<ProductImage> productImages) {
 		this.productImages = productImages;
 	}
-
 }

@@ -13,13 +13,17 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
+import model.Biding;
 import model.ProductImage;
+
+import javax.servlet.http.Part;
+
+import java.io.IOException;
 
 import com.ejb.eao.AuctionEAO;
 import com.ejb.eao.RegistrationEAO;
 
-@ManagedBean(name = "aucBean")
-@SessionScoped
+@ManagedBean(name = "AucBean")
 public class AuctionBean {
 
     private String title;
@@ -31,10 +35,10 @@ public class AuctionBean {
     private int auctionId;
     private String imgName;
     private List<ProductImage> productImages = new ArrayList<ProductImage>();
-    
-   
-    
-	private List<String> namesImg = new ArrayList<String>();
+    private Part image;
+    private List<Biding> bidings = new ArrayList<Biding>();
+    private String test;
+    private List<AuctionBean> auctionList;
     @EJB
     AuctionEAO service;
 
@@ -112,25 +116,21 @@ public class AuctionBean {
 	
     private void addMessage(FacesMessage message) {
         FacesContext.getCurrentInstance().addMessage(null, message);
-    }
-    public String genNanTime()
-    {	
-    	System.out.println("getNanTime");
-    	String nano = System.nanoTime()+"";
-    	namesImg.add(nano);
-    	return nano;
-    }
-    public void addImages() 
+    }public void addImages() 
     {
-    	System.out.println("Kompletna sraka");
+    	String url = new String(getFilename(image));
+    	try 
+    	{
+			image.write(url);
+		} catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
         ProductImage img = new ProductImage();
-        img.setTitle(imgName);
-        img.setUrl("/user/upload/"+namesImg.get(namesImg.size()-1)+"_image.jpg");
-        
+        img.setTitle("tu bedzie tytul");
+        img.setUrl(url);
         productImages.add(img);
-       
-        addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Dodano obrazek "+imgName+"!", null));
-        
+        addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Dodano obrazek "+img.getTitle()+"!", null));    
     }
     public String acceptImages()
     {
@@ -145,8 +145,55 @@ public class AuctionBean {
         return "failure";
     }
 
-	
+	public Part getImage() {
+		return image;
+	}
 
-	
-    
+	public void setImage(Part image) {
+		this.image = image;
+	}
+	private static String getFilename(Part part) {  
+        for (String cd : part.getHeader("content-disposition").split(";")) {  
+            if (cd.trim().startsWith("filename")) {  
+                String filename = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");  
+                return + System.nanoTime() + "_" + filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1); // MSIE fix.  
+            }  
+        }  
+        return null;  
+    }
+	public String test(){return "aaa";}
+	public double getHigherBid()
+	{
+		double higherBid = 0;
+		for(Biding a : bidings)
+		{
+			if(a.getCurrentPrice() > higherBid) 
+				higherBid = a.getCurrentPrice();
+		}
+		return higherBid;
+	}
+
+	public List<Biding> getBidings() {
+		return bidings;
+	}
+
+	public void setBidings(List<Biding> bidings) {
+		this.bidings = bidings;
+	}
+
+	public String getTest() {
+		return "lala";
+	}
+
+	public void setTest(String test) {
+		this.test = test;
+	}
+
+	public List<AuctionBean> getAuctionList() {
+		return auctionList;
+	}
+
+	public void setAuctionList(List<AuctionBean> auctionList) {
+		this.auctionList = service.getAllAuctions();
+	}
 }

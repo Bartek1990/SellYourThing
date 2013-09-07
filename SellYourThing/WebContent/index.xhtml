@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -12,7 +11,22 @@
     <h:body>
         <ui:composition template="/WEB-INF/template/mainLayout.xhtml">
             <ui:define name="content">
-                To jest content z indexu 
+	            <div class="grid-container auctionContainer">
+	                   <ui:repeat var="singleAuction" value="#{auctionListBean.auctionList}"  varStatus="status">
+							<div class="grid-25 mobile-grid-100">
+								<section class="singleAuction">
+									<figure class="image">
+										<img src="resources/img/bucik.jpg"/>
+									</figure>
+									<div class="description">
+										<span class="title"><h:outputLabel value="#{singleAuction.title}"/></span>
+										<span class="price"><span class="currency">CENA:</span><h:outputLabel value=""/> <span class="currency">ZL</span></span>
+										<span class="category">UBRANIA<span class="separator"> > </span>OBUWIE</span>
+									</div>
+								</section>
+							</div>
+					   </ui:repeat>		  
+				</div>
             </ui:define>
         </ui:composition>
     </h:body>

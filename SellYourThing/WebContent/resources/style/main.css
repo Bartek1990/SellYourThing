@@ -1,0 +1,101 @@
+@import url(http://fonts.googleapis.com/css?family=Exo|Open+Sans+Condensed:300&subset=latin-ext);
+@media screen and (max-width: 767px) {
+	.mobile-grid-100 .singleAuction .image{
+		width: 100px;
+	}
+	.mobile-grid-100 .singleAuction .description{
+		width:80%;
+		position: absolute;
+		right: 5px;
+		top: 10px;
+		height: 90%;
+	}
+	.mobile-grid-100 .singleAuction .description{
+		width:85%;
+		position: absolute;
+		right: 5px;
+		top: 10px;
+	}
+	.mobile-grid-100 .image:after {
+		background-size: 60%;
+	}
+	.mobile-grid-100 .singleAuction .description .price{
+		left: 6px;
+	}
+}
+body {
+    font-family: verdana;
+    background: #ddd url("#{resource['img/pat.jpg']}");
+}
+.content .auctionContainer{
+	height: 1000px;
+}
+.singleAuction{
+	background-color: #f4f4f4;
+	margin-bottom: 20px;
+	-moz-box-shadow: 2px 2px 7px #aaa;
+	-webkit-box-shadow: 2px 2px 7px #aaa;
+	box-shadow: 2px 2px 7px #aaa;
+	min-width: 150px;
+	position: relative;
+}
+
+.singleAuction .image {
+	margin: 0;
+	position: relative;
+	font-size: 0;
+}
+.singleAuction .image img {
+	width: 100%;
+	height: 100%
+}
+.image:after {
+	background: rgba(0, 0, 0, 0.05) url("#{resource['img/zoom1.png']}") no-repeat center;
+	bottom: 0;
+	opacity:0;
+	content: "";
+	display: block;
+	height: 0;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	transition: all .2s linear;
+}
+
+.singleAuction:hover .image:after{
+	height: 100%;
+	opacity: 0.8;
+}
+.singleAuction .description{
+	height: 100px;
+	position: relative;
+	text-align: center;
+	font-family: Open Sans Condensed;
+}
+.singleAuction .description .title{
+	color: #33b9f0;
+	font-weight: bold;
+}
+.singleAuction .description .price{
+	color: #555;
+	font-weight: bold;
+	position: absolute;
+	bottom: 2px;
+	font-size: 20px;
+	left: 10px;
+}
+.singleAuction .description .price .currency{
+	color: #33b9f0;
+	font-size: 14px;
+}
+.singleAuction .description .category{
+	color: #555;
+	font-weight: bold;
+	position: absolute;
+	bottom: 3px;
+	font-size: 14px;
+	right: 10px;
+}
+.singleAuction .description .category .separator{
+	color: #33b9f0;
+}

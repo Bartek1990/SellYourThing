@@ -1,6 +1,7 @@
 package com.ejb.eao;
 
 import com.beans.AuctionBean;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,10 @@ import javax.transaction.UserTransaction;
 import model.Auction;
 import model.Subcategory;
 import model.ProductImage;
+
 import java.io.File;
 import java.io.FileInputStream;
+
 import javax.annotation.Resource;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -36,6 +39,10 @@ public class AuctionEAO {
     
     public AuctionEAO() 
     {
+    }
+    public List<AuctionBean> getAllAuctions(){
+    	Query query = entityManager.createQuery("SELECT e FROM Auction e");
+		return query.getResultList();
     }
     public boolean persistAuction(AuctionBean auctionBean) {
         try 
