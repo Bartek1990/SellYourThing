@@ -12,15 +12,15 @@ import javax.persistence.TypedQuery;
 import model.Auction;
 import model.Biding;
 
-@ManagedBean
+@ManagedBean(name="auctionListBean")
 public class AuctionListBean 
 {
     @PersistenceContext()
     EntityManager entityManager;
-    private List<AuctionBean> auctsionList;
-	public List<AuctionBean> getAuctsionList() {
-		//Query query = entityManager.createQuery("SELECT e FROM Auction e");
-		//auctionList = (List<AuctionBean>) query.getResultList();
-		return auctsionList;
+    private List<AuctionBean> auctionList;
+	public List<AuctionBean> getAuctionList() {
+		Query query = entityManager.createQuery("SELECT e FROM Auction e");
+		auctionList = (List<AuctionBean>) query.getResultList();
+		return auctionList;
 	}
 }
