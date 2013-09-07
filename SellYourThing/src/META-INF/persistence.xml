@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="SellYourThingWeb" transaction-type="JTA">
-		<jta-data-source>sellyourthing_DB</jta-data-source>
-		<class>model.Address</class>
-		<class>model.Auction</class>
-		<class>model.AuctionBot</class>
-		<class>model.Biding</class>
-		<class>model.Category</class>
-		<class>model.Comment</class>
-		<class>model.Grade</class>
-		<class>model.GroupLvl</class>
-		<class>model.ProductImage</class>
-		<class>model.Subcategory</class>
-		<class>model.User</class>
+		<jta-data-source>jdbc/sellyourthing</jta-data-source>
 	</persistence-unit>
 </persistence>
