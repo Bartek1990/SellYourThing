@@ -8,8 +8,8 @@
     <h:body>
         <h:form enctype="multipart/form-data">
             <h:outputText value="Tytuł‚ obrazka: " />
-            <h:inputFile value="#{aucBean.image}"/>
-            <h:commandButton value="Wyślij!" action="#{aucBean.addImages()}" />
+            <h:inputFile value="#{auctionBean.image}"/>
+            <h:commandButton value="Wyślij!" action="#{auctionBean.addImages()}" />
             <h:link value="PowrĂłt" outcome="back"></h:link>
         </h:form>
     </h:body>

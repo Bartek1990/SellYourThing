@@ -64,7 +64,7 @@ public class Auction implements Serializable {
 	private List<Grade> grades;
 
 	//bi-directional many-to-one association to ProductImage
-	@OneToMany(mappedBy="auction")
+	@OneToMany(mappedBy="auction", cascade = CascadeType.PERSIST)
 	private List<ProductImage> productImages;
 
 	public Auction() {
