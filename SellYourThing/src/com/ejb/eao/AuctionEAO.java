@@ -1,7 +1,7 @@
 package com.ejb.eao;
 
 import com.beans.AuctionBean;
-
+import com.beans.ProductImageBean;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +19,6 @@ import javax.transaction.UserTransaction;
 import model.Auction;
 import model.Subcategory;
 import model.ProductImage;
-
 import java.io.File;
 import java.io.FileInputStream;
 
@@ -55,19 +54,23 @@ public class AuctionEAO {
             auction.setExpDate(auctionBean.getExpDate());
             auction.setStatus(auctionBean.getStatus());
             //pobieram narazie id kategori
-            String subCategoryName = "Subkategoria";	
+            String subCategoryName = "aaa";	
             
             Query query = this.entityManager.createQuery("SELECT c FROM Subcategory c WHERE c.subName=?1");
             query.setParameter("1", subCategoryName);
             Object nowy = query.getSingleResult();
             auction.setSubcategory((Subcategory) nowy);
-            //uzupe³nienie obrazków
-            List<ProductImage> productImages = auctionBean.getProductImages();
-            for(int i=0;i<productImages.size();i++)
+            //uzupeï¿½nienie obrazkï¿½w
+            List<ProductImage> productImages = new ArrayList<ProductImage>();
+            for(ProductImageBean imageBean : auctionBean.getProductImages())
             {
-            	System.out.println(productImages.get(i).getUrl());
-            	productImages.get(i).setAuction(auction);
+                ProductImage prodIm = new ProductImage();
+                prodIm.setUrl(imageBean.getUrl());
+                prodIm.setTitle(imageBean.getTitle());
+                prodIm.setAuction(auction);
+                productImages.add(prodIm);
             }
+            System.out.println("liczba obrazkow: " + productImages.size());
             auction.setProductImages(productImages);
             
             entityManager.persist(auction);

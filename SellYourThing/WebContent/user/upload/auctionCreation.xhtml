@@ -17,24 +17,35 @@
                     <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"/>
                     <h:panelGrid columns="2">
                         <h:outputText value="Tytuł :"/>
-                        <h:inputText id="title" value="#{aucBean.title}" required="true" requiredMessage="Nie podałeś tytułu aukcji!"/>
+                        <h:inputText id="title" value="#{auctionBean.title}" required="true" requiredMessage="Nie podałeś tytułu aukcji!"/>
                         <h:outputText value="Opis :"/>
-                        <h:inputText id="description" value="#{aucBean.description}" required="true" requiredMessage="Nie podałeś opisu aukcji!"/>
+                        <h:inputText id="description" value="#{auctionBean.description}" required="true" requiredMessage="Nie podałeś opisu aukcji!"/>
                         <h:outputText value="Typ :"/>
-                        <h:inputText id="type" value="#{aucBean.type}" required="true" requiredMessage="Nie podałeś typu aukcji!"/>
+                        <h:inputText id="type" value="#{auctionBean.type}" required="true" requiredMessage="Nie podałeś typu aukcji!"/>
                         <h:outputText value="Koniec Aukcji :"/>
-                        <h:inputText id="expDate" value="#{aucBean.expDate}" required="true" requiredMessage="Nie podałeś daty zakończenia aukcji!" converterMessage="Zły format daty, wymagany format to: DD/MM/YYYY">
+                        <h:inputText id="expDate" value="#{auctionBean.expDate}" required="true" requiredMessage="Nie podałeś daty zakończenia aukcji!" converterMessage="Zły format daty, wymagany format to: DD/MM/YYYY">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </h:inputText>
                         <h:outputText value="ID subkategorii (temp) :"/>
                         <h:outputText value="Status : (temp)"/>
-                        <h:inputText id="status" value="#{aucBean.status}" required="true" requiredMessage="Nie podałeś statusu!"/>
-						
-                        <h:inputText id="subcategoryId" value="#{aucBean.subcategoryId}" required="true" requiredMessage="Nie podałeś subkategorii!"/>
-                        <h:commandButton type="submit" value="Umieść Ogłoszenie" action="#{aucBean.addAuction}"/>
+                        <h:inputText id="status" value="#{auctionBean.status}" required="true" requiredMessage="Nie podałeś statusu!"/>				
+                        <h:inputText id="subcategoryId" value="#{auctionBean.subcategoryId}" required="true" requiredMessage="Nie podałeś subkategorii!"/>
+                        <h:commandButton type="submit" value="Umieść Ogłoszenie" action="#{auctionBean.addAuction}"/>
                     </h:panelGrid>
                 </h:form>
-                <h:link value="Dodaj obrazki!" outcome="addImg"></h:link>
+                
+                <h:form enctype="multipart/form-data">
+                    <h:inputFile id="auctionImage" value="#{auctionBean.image}"/>
+                    <h:commandButton value="Dodaj">
+                        <f:ajax execute="auctionImage" render="images" listener="#{auctionBean.addImage()}"/>
+                    </h:commandButton>
+
+                    <h:panelGroup id="images">
+                        <ui:repeat value="#{auctionBean.productImages}" var="oneImage">
+                            <h:outputText value="#{oneImage.url}" />
+                        </ui:repeat>
+                    </h:panelGroup>
+                </h:form>
 
         </ui:define>
         </ui:composition>

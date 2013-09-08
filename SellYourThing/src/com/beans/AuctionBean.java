@@ -7,23 +7,22 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
-
-import model.Biding;
 import model.ProductImage;
-
+import static java.nio.file.StandardCopyOption.*;
 import javax.servlet.http.Part;
 
 import java.io.IOException;
 
 import com.ejb.eao.AuctionEAO;
-import com.ejb.eao.RegistrationEAO;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-@ManagedBean(name = "AucBean")
+@SessionScoped
+@ManagedBean
 public class AuctionBean {
 
     private String title;
@@ -34,11 +33,13 @@ public class AuctionBean {
     private String status;
     private int auctionId;
     private String imgName;
-    private List<ProductImage> productImages = new ArrayList<ProductImage>();
-    private Part image;
-    private List<Biding> bidings = new ArrayList<Biding>();
-    private String test;
+    private List<ProductImageBean> productImages = new ArrayList<ProductImageBean>();
     private List<AuctionBean> auctionList;
+    private List<Part> imagesList = new ArrayList<Part>();
+    private Part image;
+
+ 
+
     @EJB
     AuctionEAO service;
 
@@ -50,7 +51,7 @@ public class AuctionBean {
         this.auctionId = auctionId;
     }
 
-        public String getTitle() {
+    public String getTitle() {
         return title;
     }
 
@@ -97,47 +98,39 @@ public class AuctionBean {
     public void setStatus(String status) {
         this.status = status;
     }
+
     public String getImgName() {
-		return imgName;
-	}
+        return imgName;
+    }
 
-	public void setImgName(String imgName) {
-		this.imgName = imgName;
-	}
+    public void setImgName(String imgName) {
+        this.imgName = imgName;
+    }
 
-	
-	public List<ProductImage> getProductImages() {
-		return productImages;
-	}
+    public List<ProductImageBean> getProductImages() {
+        return productImages;
+    }
 
-	public void setProductImages(List<ProductImage> productImages) {
-		this.productImages = productImages;
-	}
-	
+    public void setProductImages(List<ProductImageBean> productImages) {
+        this.productImages = productImages;
+    }
+
     private void addMessage(FacesMessage message) {
         FacesContext.getCurrentInstance().addMessage(null, message);
-    }public void addImages() 
-    {
-    	String url = new String(getFilename(image));
-    	try 
-    	{
-			image.write(url);
-		} catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-        ProductImage img = new ProductImage();
-        img.setTitle("tu bedzie tytul");
-        img.setUrl(url);
-        productImages.add(img);
-        addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Dodano obrazek "+img.getTitle()+"!", null));    
-    }
-    public String acceptImages()
-    {
-    	return "accept";
     }
     public String addAuction() {
         if (service.persistAuction(this)) {
+            for(Part oneImage : imagesList)
+            {
+                String url = generateFilename(oneImage);
+                Path path = Paths.get("D:/obrazki/" + url);
+                try {
+                    Files.copy(oneImage.getInputStream(), path, REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    Logger.getLogger(AuctionBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
             addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Aukcja dodana!", null));
             return "add";
         }
@@ -145,55 +138,42 @@ public class AuctionBean {
         return "failure";
     }
 
-	public Part getImage() {
-		return image;
-	}
-
-	public void setImage(Part image) {
-		this.image = image;
-	}
-	private static String getFilename(Part part) {  
-        for (String cd : part.getHeader("content-disposition").split(";")) {  
-            if (cd.trim().startsWith("filename")) {  
-                String filename = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");  
-                return + System.nanoTime() + "_" + filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1); // MSIE fix.  
-            }  
-        }  
-        return null;  
+    public List<Part> getImagesList() {
+        return imagesList;
     }
-	public String test(){return "aaa";}
-	public double getHigherBid()
-	{
-		double higherBid = 0;
-		for(Biding a : bidings)
-		{
-			if(a.getCurrentPrice() > higherBid) 
-				higherBid = a.getCurrentPrice();
-		}
-		return higherBid;
-	}
 
-	public List<Biding> getBidings() {
-		return bidings;
-	}
+   public Part getImage() {
+        return image;
+    }
+   public void addImage(){
+               this.imagesList.add(image);
+        String url = generateFilename(image);
+        Path path = Paths.get("D:/obrazki/" + url);
+        ProductImageBean img = new ProductImageBean();
+        img.setTitle("tu bedzie tytul");
+        img.setUrl(path.toString());
+        System.out.println("zaraz dodam");
+        productImages.add(img);
+   }
+    public void setImage(Part image) {
 
-	public void setBidings(List<Biding> bidings) {
-		this.bidings = bidings;
-	}
+        this.image = image;
+    }
+    private static String generateFilename(Part part) {
+        for (String cd : part.getHeader("content-disposition").split(";")) {
+            if (cd.trim().startsWith("filename")) {
+                String filename = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+                return + System.nanoTime() + "_" + filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1); 
+            }
+        }
+        return null;
+    }
 
-	public String getTest() {
-		return "lala";
-	}
+    public List<AuctionBean> getAuctionList() {
+        return auctionList;
+    }
 
-	public void setTest(String test) {
-		this.test = test;
-	}
-
-	public List<AuctionBean> getAuctionList() {
-		return auctionList;
-	}
-
-	public void setAuctionList(List<AuctionBean> auctionList) {
-		this.auctionList = service.getAllAuctions();
-	}
+    public void setAuctionList(List<AuctionBean> auctionList) {
+        this.auctionList = service.getAllAuctions();
+    }
 }
