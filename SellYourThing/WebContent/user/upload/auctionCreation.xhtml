@@ -33,21 +33,19 @@
                         <h:commandButton type="submit" value="Umieść Ogłoszenie" action="#{auctionBean.addAuction}"/>
                     </h:panelGrid>
                 </h:form>
-                
                 <h:form enctype="multipart/form-data">
                     <h:inputFile id="auctionImage" value="#{auctionBean.image}"/>
                     <h:commandButton value="Dodaj">
-                        <f:ajax execute="auctionImage" render="images" listener="#{auctionBean.addImage()}"/>
+                        <f:ajax execute="auctionImage" render="images"/>
                     </h:commandButton>
-
                     <h:panelGroup id="images">
                         <ui:repeat value="#{auctionBean.productImages}" var="oneImage">
-                            <h:outputText value="#{oneImage.url}" />
+                            <h:graphicImage value="/image/#{oneImage.url}" width="200" height="171" />
                         </ui:repeat>
                     </h:panelGroup>
                 </h:form>
 
-        </ui:define>
+            </ui:define>
         </ui:composition>
     </h:body>
 </html>

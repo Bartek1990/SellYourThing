@@ -8,7 +8,6 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
-import model.ProductImage;
 import static java.nio.file.StandardCopyOption.*;
 import javax.servlet.http.Part;
 
@@ -120,17 +119,6 @@ public class AuctionBean {
     }
     public String addAuction() {
         if (service.persistAuction(this)) {
-            for(Part oneImage : imagesList)
-            {
-                String url = generateFilename(oneImage);
-                Path path = Paths.get("D:/obrazki/" + url);
-                try {
-                    Files.copy(oneImage.getInputStream(), path, REPLACE_EXISTING);
-                } catch (IOException ex) {
-                    Logger.getLogger(AuctionBean.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-
             addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Aukcja dodana!", null));
             return "add";
         }
@@ -145,18 +133,20 @@ public class AuctionBean {
    public Part getImage() {
         return image;
     }
-   public void addImage(){
-               this.imagesList.add(image);
+    public void setImage(Part image) {
+        this.imagesList.add(image);
         String url = generateFilename(image);
-        Path path = Paths.get("D:/obrazki/" + url);
+        Path path = Paths.get("C:/images/" + url);
+        try {
+                    Files.copy(image.getInputStream(), path, REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    Logger.getLogger(AuctionBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
         ProductImageBean img = new ProductImageBean();
         img.setTitle("tu bedzie tytul");
-        img.setUrl(path.toString());
+        img.setUrl(url);
         System.out.println("zaraz dodam");
         productImages.add(img);
-   }
-    public void setImage(Part image) {
-
         this.image = image;
     }
     private static String generateFilename(Part part) {
