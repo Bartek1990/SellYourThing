@@ -54,7 +54,16 @@ public class Auction implements Serializable {
 	//bi-directional many-to-one association to Biding
 	@OneToMany(mappedBy="auction")
 	private List<Biding> bidings;
-
+        public double getHigherBid()
+        {
+            double higherBid = 0;
+                    for(Biding bid : bidings)
+                    {
+                        if(bid.getCurrentPrice() > higherBid)
+                            higherBid = bid.getCurrentPrice();
+                    }
+                    return higherBid;
+        }
 	//bi-directional many-to-one association to Comment
 	@OneToMany(mappedBy="auction")
 	private List<Comment> comments;
