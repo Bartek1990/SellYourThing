@@ -2,27 +2,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
-	<h:body>
-		 <h:form>
-	        <center>
-	            <h:messages errorClass="errorMessage" infoClass="infoMessage"
-	                warnClass="warnMessage"></h:messages>
-	            <h:panelGrid columns="2">
-	                <h:outputText value="Email : "></h:outputText>
-					<h:inputText id="email" value="#{loginBean.email}"></h:inputText>
-	                
-	                <h:outputText value="Hasło : "></h:outputText>
-	                <h:inputSecret id="password" value="#{loginBean.password}"></h:inputSecret>
-	 
-	                <h:commandButton value="Zaloguj" action="#{loginBean.login}"
-	                    type="submit"></h:commandButton> 
-	 
-	                <h:commandLink value="Zarejestruj" action="Registration.xhtml"></h:commandLink>
-	                <h:commandLink value="Zapomniałeś hasła?"></h:commandLink>
-	            </h:panelGrid>
-	        </center>
-	    </h:form>
-	</h:body>
+    <h:body>
+
+        <ui:composition template="/WEB-INF/template/mainLayout.xhtml">
+            <ui:define name="content">
+                <div class="loginContainer">
+                    <div class="loginButtonsContainer">
+                        <div class="loginButton">LOGOWANIE</div>
+                        <a href="registration.xhtml"><div class="registerButton">REJESTRACJA</div></a>
+                    </div>
+                    <h:form>
+                        <p>	
+                            <h:outputLabel for="username" value="E-MAIL"/>
+                        </p>
+                        <p>
+                            <h:inputText id="username" value="#{loginBean.email}" pt:required="required" pt:placeholder="jan.nowak@sellyourthing.com"></h:inputText>
+                        </p>
+                        <p>
+                            <h:outputLabel for="username" value="HASŁO"/>
+                        </p>
+                        <p>
+                            <h:inputText id="password" value="#{loginBean.email}" pt:required="required" pt:placeholder="ILoveSYT"></h:inputText>
+                        </p>
+                        <p class="submitButton">
+                            <h:commandButton value="ZALOGUJ" action="#{loginBean.login}" type="submit"/>
+                        </p>
+                    </h:form>
+                    <h:messages class="messages"></h:messages>
+                </div>
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
 </html>

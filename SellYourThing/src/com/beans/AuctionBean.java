@@ -26,7 +26,7 @@ public class AuctionBean {
 
     private String title;
     private String description;
-    private String type;
+    private String type = "1";
     private Date expDate;
     private int subcategoryId;
     private String status;
@@ -71,7 +71,7 @@ public class AuctionBean {
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.type = "1";
     }
 
     public Date getExpDate() {

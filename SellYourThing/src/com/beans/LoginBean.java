@@ -51,15 +51,15 @@ public class LoginBean {
 			
 			if(request.isUserInRole("Administrator"))
 			{
-				message = "U¿ytkownik: " + principal.getName();
+				message = "Uï¿½ytkownik: " + principal.getName();
 				navTo = "admin";
 			} else if(request.isUserInRole("Moderator"))
 			{
-				message = "U¿ytkownik: " + principal.getName();
+				message = "Uï¿½ytkownik: " + principal.getName();
 				navTo = "moderator";
 			} else if(request.isUserInRole("User"))
 			{
-				message = "U¿ytkownik: " + principal.getName();
+				message = "Uï¿½ytkownik: " + principal.getName();
 				navTo = "user";
 			}
 			FacesContext.getCurrentInstance().addMessage(
@@ -68,7 +68,7 @@ public class LoginBean {
 		} catch (ServletException e) {
             FacesContext.getCurrentInstance().addMessage(
             		null, new FacesMessage(FacesMessage.SEVERITY_ERROR, 
-            				"Wyst¹pi³ b³¹d, niezalogowano!", null));
+            				"WystÄ…piÅ‚ bÅ‚Ä…d. Nie zalogowano!", null));
             e.printStackTrace();
         }
 		return "failure";

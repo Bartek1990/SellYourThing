@@ -1,10 +1,9 @@
-@import url(http://fonts.googleapis.com/css?family=Exo|Open+Sans+Condensed:300&subset=latin-ext);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:800&subset=latin-ext);
 @media screen and (max-width: 767px) {
 	.mobile-grid-100 .singleAuction .image{
 		width: 100px;
 	}
 	.mobile-grid-100 .singleAuction .description{
-		width:80%;
 		position: absolute;
 		right: 5px;
 		top: 10px;
@@ -20,14 +19,175 @@
 		background-size: 60%;
 	}
 	.mobile-grid-100 .singleAuction .description .price{
-		left: 6px;
+		left: 16px;
+	}
+	.grid-container{
+		width: 90%;
+		min-width: 660px;
 	}
 }
 body {
     font-family: verdana;
-    background: #ddd url("#{resource['img/pat.jpg']}");
+    background: #ddd url("#{resource['/img/pat.jpg']}");
+	margin: 0;
+	padding: 0;
 }
-.content .auctionContainer{
+.registrationContainer .messages{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 15px;
+}
+.messages{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 15px;
+}
+.logoContainer{
+	height: 80px;
+	width: 400px;
+	float: left;
+	font-family: Open Sans;
+}
+.logo-sell, .logo-your, .logo-thing{
+	height: 80px;
+}
+.logo-sell{
+	font-size: 80px;
+	margin-top: -20px;
+	color: #33b9f0;
+	float: left;
+	height: 80px;
+}
+.logoContainer div::selection {
+	background: transparent;
+}
+.logoContainer div::-moz-selection {
+	background: transparent;
+}
+
+
+.logo-your{
+	height: 30px;
+	font-size: 35px;
+	float: left;
+	font-style: italic;
+	color: #fff;
+	margin-left: -25px;
+}
+.logo-thing{
+	height: 20px;
+	font-size: 35px;
+	float: left;
+	color: #33b9f0;
+	margin-left: -70px;
+	margin-top: 30px;
+}
+.logo-pl{
+	height: 20px;
+	font-size: 20px;
+	margin-top: 45px;
+	margin-left: -2px;
+	float: left;
+	color: #fff;
+}
+.logo-image{
+	float: left;
+	margin-left: -47px;
+}
+.logo-image img{
+	width: 55px;
+	height: 55px;
+}
+.userImage{
+	float:left;
+	margin-right: 10px;
+	z-index: 1;
+}
+.userImage img{
+	width: 22px;
+	height: 22px;
+	z-index: 0;
+}
+.userMenu{
+	font-family: Open Sans Condensed;
+	width: auto;
+	background-color: #2d231c;
+	min-width: 700px;
+}
+.userMenu ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	width: 100%;
+	display: block;
+	height: 80px;
+	font-size: 18px;
+}
+.userMenu li {
+	display: block;
+	float: right;
+	margin-top: 18px;
+}
+.userMenu li a {
+	display: block;
+	float: left;
+	color: #33b9f0;
+	text-decoration: none;
+	font-weight: bold;
+	padding: 8px 20px 0px 20px;
+	-moz-transition: all 0.1s linear;
+	-webkit-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.userMenu li a:hover {
+	color: #FFFFFF;
+	height: 22px;
+}
+.topMenu{
+	font-family: Open Sans Condensed;
+	width: auto;
+	background-color: #f4f4f4;
+	min-width: 700px;
+}
+.topMenu ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	width: 100%;
+	display: block;
+	height: 50px;
+	font-size: 18px;
+	text-align: center;
+}
+.topMenu li {
+	display: inline-block;
+	height: 50px;
+	border-right: solid 1px #2d231c; 
+	margin-left: -3px;
+}
+.topMenu li:first-child{
+	border-left: solid 1px #2d231c; 
+}
+.topMenu li a{
+	display: inline-block;
+	height: 42px;
+	color: #2d231c;
+	text-decoration: none;
+	font-weight: bold;
+	padding: 8px 20px 0 20px;
+	-moz-transition: all 0.1s linear;
+	-webkit-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.topMenu li a:hover {
+	display: inline-block;
+	background-color:  #33b9f0;
+	color: #fff;
+}
+.auctionContainer{
+	padding-top: 100px;
 	height: 1000px;
 }
 .singleAuction{
@@ -36,7 +196,6 @@ body {
 	-moz-box-shadow: 2px 2px 7px #aaa;
 	-webkit-box-shadow: 2px 2px 7px #aaa;
 	box-shadow: 2px 2px 7px #aaa;
-	min-width: 150px;
 	position: relative;
 }
 
@@ -98,4 +257,292 @@ body {
 }
 .singleAuction .description .category .separator{
 	color: #33b9f0;
+}
+
+/*---FORMS---*/
+fieldset{
+    border: 1px solid #d3d3d3;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+.submitButton input{
+	font-family: Open Sans Condensed;
+	margin-top: 25px;
+	background-color: #2d231c;
+	color: #fff;
+	font-weight: bold;
+	font-size: 20px;
+	-moz-transition: all 0.1s linear;
+	-webkit-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.submitButton input:hover{
+	color: #33b9f0;
+}
+input:invalid{
+	box-shadow: none;
+}
+textarea:invalid{
+	box-shadow: none;
+}
+label{
+	color: #2d231c;
+}
+.loginButton{
+	padding-top: 12px;
+	float: left;
+	width: 50%;
+}
+.registerButton{
+	padding-top: 12px;
+	float: right;
+	width: 50%;
+}
+.loginButton a{
+	text-decoration: none;
+	color: #fff;
+}
+.loginButtonsContainer{
+	width: 100%;
+	height: 50px;
+	background-color: #2d231c;
+	margin-bottom: 15px;
+}
+
+/*---LOGIN---*/
+.loginContainer{
+	width: 400px;
+	height: 330px;
+	background-color: red;
+	text-align: center;
+	margin: auto;
+	font-family: Open Sans Condensed;
+	background-color: #f4f4f4;
+	color: #2d231c;
+	font-weight: bold;
+	margin-top: 50px;
+}
+
+.loginContainer p{
+	margin: 0;
+}
+.loginContainer input{
+	width: 300px;
+	height: 40px;
+	border: none;
+}
+.loginContainer a{
+	text-decoration: none;
+	color: #fff;
+	display: block;
+	width: 100%;
+        height:100%;
+	-moz-transition: all 0.1s linear;
+	-webkit-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.loginContainer a:hover{
+	color: #33b9f0;
+}
+.loginContainer .loginButton{
+	background-color: #33b9f0;
+	color: #fff;
+	height: 38px;
+}
+.loginContainer .registerButton{
+	height: 38px;
+}
+
+/* registration */
+.registrationContainer{
+	width: 400px;
+	height: 1000px;
+	background-color: red;
+	text-align: center;
+	margin: auto;
+	font-family: Open Sans Condensed;
+	background-color: #f4f4f4;
+	color: #2d231c;
+	font-weight: bold;
+	margin-top: 50px;
+        margin-bottom: 200px;
+}
+.registrationContainer p{
+	margin: 0;
+}
+.registrationContainer input{
+	width: 300px;
+	height: 30px;
+	border: none;
+}
+.registrationContainer a{
+	text-decoration: none;
+	color: #fff;
+	-moz-transition: all 0.1s linear;
+	-webkit-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.submitButton input{
+	height: 50px;
+}
+.registrationContainer a:hover{
+	color: #33b9f0;
+}
+.registrationContainer .registerButton{
+	background-color: #33b9f0;
+	color: #fff;
+	height: 38px;
+}
+.registrationContainer .loginButton{
+	height: 38px;
+}
+
+
+/*---AuctionCreation---*/
+.auctionCreationContainer{
+	width: 1000px;
+	height: 700px;
+	background-color: red;
+	text-align: center;
+	margin: auto;
+	font-family: Open Sans Condensed;
+	background-color: #f4f4f4;
+	color: #2d231c;
+	font-weight: bold;
+	margin-top: 50px;
+	position: relative;
+}
+.auctionCreationHeader{
+	background-color: #2d231c;
+	height: 50px;
+	color: #fff;
+}
+.auctionCreationHeader .header{
+	width: 300px;
+	background-color: #33b9f0;
+	float: left;
+	height: 40px;
+	padding-top: 10px;
+}
+.auctionCreationContainer .title{
+	width: 80%;
+	height: 40px;
+	border: none;
+	margin-right: 20px;
+	float: right;
+	margin-bottom: 15px;
+}
+.auctionCreationContainer .description{
+	width: 80%;
+	height: 200px;
+	border: none;
+	margin-right: 20px;
+	float: right;
+	resize: none;
+	margin-bottom: 15px;
+}
+
+.auctionCreationContainer label{
+	float: right;
+	margin-right: 20px;
+	margin-top: 8px;
+}
+.auctionCreationContainer .submitButton{
+	clear: both;
+	border: none;
+}
+.auctionCreationContainer .submitButton input{
+	clear: both;
+	border: none;
+	margin-top: 40px;
+}
+.auctionCreationContainer .category{
+	float: left;
+	height: 30px;
+	border: none;
+	width: 150px;
+	margin-bottom: 15px;
+}
+.auctionCreationContainer .subcategory{
+	float: left;
+	height: 30px;
+	border: none;
+	width: 150px;
+	margin-left: 15px;
+	margin-bottom: 15px;
+}
+.auctionCreationContainer .categoryLabel{
+	float: left;
+	clear: right;
+	margin-left: 96px;
+}
+
+.auctionCreationContainer .time{
+	float: left;
+	height: 30px;
+	border: none;
+	width: 150px;
+	margin-bottom: 15px;
+}
+.auctionCreationContainer .timeLabel{
+	float: left;
+	margin-left: 73px;
+	clear: left;
+}
+.auctionCreationContainer .price{
+	width: 20%;
+	height: 40px;
+	border: none;
+	margin-right: 20px;
+	float: left;
+	margin-bottom: 15px;
+}
+.auctionCreationContainer .priceLabel{
+	float: left;
+	clear: left;
+	margin-left: 38px;
+}
+.auctionCreationContainer .imageForm{
+	position: absolute;
+	top: 510px;
+	left: 177px;
+}
+.auctionCreationContainer .imageForm input{
+	display: block;
+	background-color: #2d231c;
+	border: none;
+	color: #fff;
+	height: 50px;
+	font-family: Open Sans Condensed;
+	font-weight: bold;
+	font-size: 20px;
+	-moz-transition: all 0.1s linear;
+	-webkit-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.auctionCreationContainer .imageForm input:hover{
+	color: #33b9f0;
+}
+.auctionCreationContainer .imagesContainer{
+	width: 63%;
+	height: 100px;
+	float: left;
+	clear: left;
+	margin-left: 350px;
+	text-align: left;
+}
+.auctionCreationContainer .imagesContainer img{
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+	border: 2px dotted #33b9f0;
+	opacity: 0.9;
+	-moz-transition: all 0.1s linear;
+	-webkit-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.auctionCreationContainer .imagesContainer img:hover{
+	opacity: 1;
+	border: 2px solid #33b9f0;
 }

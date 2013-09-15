@@ -1,72 +1,122 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <title>Sell Your Thing</title>
-    </h:head>
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
     <h:body>
+
         <ui:composition template="/WEB-INF/template/mainLayout.xhtml">
             <ui:define name="content">
-                <h:outputText value="Rejestracja nowego użytkownika" styleClass="header"/>
-                <h:form>
-                    <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"/>
-                    <h:panelGrid columns="2">
-                        <h:outputText value="Imie :"/>
-                        <h:inputText id="username" value="#{regBean.username}" required="true" requiredMessage="Nie podałeś imienia!"/>
 
-                        <h:outputText value="Nazwisko :"/>
-                        <h:inputText id="userforname" value="#{regBean.userforname}" required="true" requiredMessage="Nie podałeś nazwiska!"/>
+                <div class="registrationContainer">
+                    <div class="loginButtonsContainer">
+                        <a href="login.xhtml"><div class="loginButton">LOGOWANIE</div></a>
+                        <div class="registerButton">REJESTRACJA</div>
+                    </div>
+                    <h:form>
+                        <fieldset>
+                            <legend class="account">DANE KONTA</legend>
+                            <p>
+                                <h:outputLabel for="username" value="IMIĘ"/>
+                            </p>
+                            <p>
+                                <h:inputText id="username" value="#{regBean.username}" pt:required="required" pt:placeholder="Jan"/>
+                            </p>
+                            <p>
+                                <h:outputLabel for="userforname" value="NAZWISKO"/>
+                            </p>
+                            <p>
+                                <h:inputText id="userforname" value="#{regBean.userforname}" pt:required="required" pt:placeholder="Nowak"/>
+                            </p>
+                            <p>
+                                <h:outputLabel for="email" value="E-MAIL"/>
+                            </p>
+                            <p>
+                                <h:inputText id="email" binding="#{email}" value="#{regBean.email}" pt:required="required" pt:placeholder="jan.nowak@sellyourthing.com"/>
+                            </p>
+                            <p>
+                                <h:outputLabel for="confirmemail" value="POWTÓRZ E-MAIL"/>
+                            </p>
+                            <p>
+                                <h:inputText id="confirmemail" value="#{regBean.confirmemail}" validator="#{regBean.emailValidator}" pt:required="required" pt:placeholder="jan.nowak@sellyourthing.com">
+                                    <f:attribute name="email" value="#{email}"/>
+                                </h:inputText>
+                            </p>
+                            <p>
+                                <h:outputLabel for="password" value="HASŁO"/>
+                            </p>
+                            <p>
+                                <h:inputSecret id="password" binding="#{password}" value="#{regBean.password}" pt:required="required" pt:placeholder="ILoveSYT"/>
+                            </p>
+                            <p>
+                                <h:outputLabel for="confirmPassword" value="POWTÓRZ HASŁO"/>
+                            </p>
+                            <p>
+                                <h:inputSecret id="confirmPassword" value="#{regBean.confirmpassword}" pt:required="required" pt:placeholder="ILoveSYT">
+                                    <f:validator validatorId="passwordValidator"/>
+                                    <f:attribute name="password" value="#{password}"/>
+                                </h:inputSecret>
+                            </p>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="personal">DANE PERSONALNE</legend>
+                            <p>
+                                <h:outputLabel for="pesel" value="PESEL"/>
+                            </p>
+                            <p>
+                                <h:inputText id="pesel" value="#{regBean.pesel}" pt:required="required" pt:placeholder="91020601553"/>
+                            </p>
+                            <p>
+                                <h:outputLabel for="bornDate" value="DATA URODZENIA (dzień/miesiąc/rok)"/>
+                            </p>
+                            <p>
+                                <h:inputText id="bornDate" value="#{regBean.dob}" pt:required="required" pt:placeholder="06/02/1991" converterMessage="Wymagany format daty urodzenia to: Dzień/Miesiąc/Rok">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:inputText>
+                            </p>
 
-                        <h:outputText value="Hasło :"/>
-                        <h:inputSecret id="password" binding="#{password}" value="#{regBean.password}" required="true" requiredMessage="Nie wpisałeś hasła!"/>
+                            <p>
+                                <h:outputLabel for="street" value="ULICA"/>
+                            </p>
+                            <p>
+                                <h:inputText id="street" value="#{regBean.street}" pt:required="required" pt:placeholder="Szewska"/>
+                            </p>
+                            <p>
+                                <h:outputLabel for="zip" value="KOD POCZTOWY"/>
+                            </p>
+                            <p>
+                                <h:inputText id="zip" value="#{regBean.zip}" pt:required="required" pt:placeholder="30-300"/>
+                            </p>
+                            <p>
+                                <h:outputLabel for="city" value="MIASTO"/>
+                            </p>
+                            <p>
+                                <h:inputText id="city" value="#{regBean.city}" pt:required="required" pt:placeholder="Kraków"/>
+                            </p>
+                            <p>
+                                <h:outputLabel for="province" value="WOJEWÓDZTWO"/>
+                            </p>
+                            <p>
+                                <h:inputText id="province" value="#{regBean.province}" pt:required="required" pt:placeholder="małopolskie"/>
+                            </p>
+                            <p>
+                                <h:outputLabel for="country" value="PAŃSTWO"/>
+                            </p>
+                            <p>
+                                <h:inputText id="country" value="#{regBean.country}" pt:required="required" pt:placeholder="Polska"/>
+                            </p>
+                        </fieldset>
+                        <p class="submitButton">
+                            <h:commandButton value="ZAREJESTRUJ" action="#{regBean.addUser}" type="submit" />
+                        </p>
 
-                        <h:outputText value="Potwierdź hasło :"/>
-                        <h:inputSecret id="confirmpassword" value="#{regBean.confirmpassword}" required="true" requiredMessage="Nie potwierdziłeś hasła!">
-                            <f:validator validatorId="passwordValidator"/>
-                            <f:attribute name="password" value="#{password}"/>  
-                        </h:inputSecret>
-
-                        <h:outputText value="PESEL :"/>
-                        <h:inputText id="pesel" value="#{regBean.pesel}" required="true" requiredMessage="Nie wpisałeś nr PESEL!"/>
-
-                        <h:outputText value="Data urodzenia :"/>
-                        <h:inputText id="dob" value="#{regBean.dob}" required="true" requiredMessage="Nie wpisałeś daty urodzenia!" converterMessage="Zły format daty, wymagany format to: DD/MM/YYYY">
-                            <f:convertDateTime pattern="dd/MM/yyyy"/>
-                        </h:inputText>
-
-                        <h:outputText value="Email :"/>
-                        <h:inputText id="email" binding="#{email}" value="#{regBean.email}" required="true" requiredMessage="Nie wpisałeś Emaila!"/>
-
-                        <h:outputText value="Potwierdź Email :"/>
-                        <h:inputText id="confirmemail" value="#{regBean.confirmemail}" required="true" requiredMessage="Nie potwierdziłeś Emaila!" validator="#{regBean.emailValidator}">
-                            <f:attribute name="email" value="#{email}"/>
-                        </h:inputText>
-
-                        <h:outputText value="Ulica :"/>
-                        <h:inputText id="street" value="#{regBean.street}" required="true" requiredMessage="Nie wpisałeś nazwy ulicy!"/>
-
-                        <h:outputText value="Kod pocztowy :"/>
-                        <h:inputText id="zip" value="#{regBean.zip}" required="true" requiredMessage="Nie wpisałeś kodu pocztowego!"/>
-
-                        <h:outputText value="Miasto :"/>
-                        <h:inputText id="city" value="#{regBean.city}" required="true" requiredMessage="Nie wpisałeś miasta!"/>
-
-                        <h:outputText value="Województwo :"/>
-                        <h:inputText id="province" value="#{regBean.province}" required="true" requiredMessage="Nie wpisałeś województwa!"/>
-
-                        <h:outputText value="Państwo :"/>
-                        <h:inputText id="country" value="#{regBean.country}" required="true" requiredMessage="Nie wpisałeś państwa!"/>
-
-                        <h:commandButton type="submit" value="Rejestruj" action="#{regBean.addUser}"/>
-                        <h:commandButton type="reset" value="Reset"/>
-                    </h:panelGrid>
-                </h:form>
-        </ui:define>
+                    </h:form>
+                    <h:messages class="messages"></h:messages>
+                </div>
+            </ui:define>
         </ui:composition>
+
     </h:body>
 </html>
