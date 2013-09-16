@@ -7,117 +7,79 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
+
         <title>Sell Your Thing</title>
-        <script language="javascript" type="text/javascript">
-            window.onload = function() {
-                var cat = document.querySelector("#category");
-                dropdownlist(cat.options[cat.selectedIndex].value);
-            }
-
-
-            function dropdownlist(listindex)
-            {
-
-                var sub = document.querySelector("#subcategory");
-                sub.style.display = "none";
-                switch (listindex)
-                {
-                    case "Wybierz Kategorię" :
-                        sub.innerHTML = "";
-                        sub.style.display = "none";
-                        break;
-                    case "Odzież" :
-                        sub.style.display = "block";
-                        sub.innerHTML = "";
-                        sub.innerHTML += "<f:selectItem itemValue='1' itemLabel='Buty' />";
-                        sub.innerHTML += "<f:selectItem itemValue='1' itemLabel='Majty' />";
-                        sub.innerHTML += "<f:selectItem itemValue='1' itemLabel='Kurtki' />";
-                        break;
-
-                    case "Elektronika" :
-                        sub.style.display = "block";
-                        sub.innerHTML = "";
-                        sub.innerHTML += "<f:selectItem itemValue='1' itemLabel='Komputery' />";
-                        sub.innerHTML += "<f:selectItem itemValue='1' itemLabel='RTV i AGD' />";
-                        sub.innerHTML += "<f:selectItem itemValue='1' itemLabel='Telefony' />";
-                        break;
-
-                    case "Erotyka" :
-                        sub.style.display = "block";
-                        sub.innerHTML = "";
-                        sub.innerHTML += "<f:selectItem itemValue='1' itemLabel='Dildo' />";
-                        sub.innerHTML += "<f:selectItem itemValue='1' itemLabel='Specyfiki' />";
-                        sub.innerHTML += "<f:selectItem itemValue='1' itemLabel='Pornosy' />";
-                        break;
-
-                    default:
-                        sub.innerHTML = "";
-                        sub.style.display = "none";
-                        break;
-                }
-                return true;
-            }
-
-
-        </script>
     </h:head>
 
     <h:body>
         <ui:composition template="/WEB-INF/template/mainLayout.xhtml">
             <ui:define name="content">
+
                 <div class="auctionCreationContainer" id="auctionCreationContainer">
                     <div class="auctionCreationHeader">
                         <div class="header">TWORZENIE AUKCJI</div>
                     </div>
-                    <h:panelGroup id="mainPanel">
-                        <h:form>
-                            <p>
-                                <h:inputText class="title" id="title" value="#{auctionBean.title}" pt:required="required"/>
-                                <h:outputLabel for="title" value=" TYTUŁ AUKCJI"/>
-                            </p>
-                            <p>
-                                <h:inputTextarea class="description" id="description" pt:required="required" value="#{auctionBean.description}"/>
-                                <h:outputLabel for="description" value="OPIS"/>
-                            </p>
-                            <p>
-                                <h:outputLabel for="category" value="KATEGORIA"/>
-                                <h:selectOneMenu class="category" id="category" onchange="dropdownlist(this.options[this.selectedIndex].value);">
-                                    <f:selectItem itemValue="1" itemLabel="Wybierz Kategorię" />
-                                    <f:selectItem itemValue="1" itemLabel="Odzież" />
-                                    <f:selectItem itemValue="1" itemLabel="Elektronika" />
-                                    <f:selectItem itemValue="1" itemLabel="Erotyka" />
-                                </h:selectOneMenu>
-                                <h:selectOneMenu class="subcategory" id="subcategory" ></h:selectOneMenu>
-                            </p>
-                            <p>
-                                <h:outputLabel for="time" class="timeLabel" value="CZAS TRWANIA"/>
-                                <h:selectOneMenu class="time" id="time" onchange="dropdownlist(this.options[this.selectedIndex].value);">
-                                    <f:selectItem itemValue="02/02/2014" itemLabel="1 dzień" />
-                                    <f:selectItem itemValue="02/02/2014" itemLabel="4 dni" />
-                                    <f:selectItem itemValue="02/02/2014" itemLabel="7 dni" />
-                                    <f:selectItem itemValue="02/02/2014" itemLabel="14 dni" />
-                                </h:selectOneMenu>
-                            </p>
-                            <p>
-                                <h:outputLabel for="price" class="priceLabel" value="CENA WYWOŁAWCZA"/>
-                                <h:inputText class="price" id="price" value="#{auctionBean.type}" pt:required="required" pt:placeholder="złotych"/>
-                            </p>
+                    <h:form id="mainForm">
+                        <p>
+                            <h:inputText class="title" id="title" value="#{auctionBean.title}" pt:required="required"/>
+                            <h:outputLabel for="title" value=" TYTUŁ AUKCJI"/>
+                        </p>
+                        <p>
+                            <h:inputTextarea class="description" id="description" pt:required="required" value="#{auctionBean.description}"/>
+                            <h:outputLabel for="description" value="OPIS"/>
+                        </p>
+                        <p>
+
+                            <div class="subcategoryPlaceholder">
+                                <h:selectOneMenu class="subcategory" id="subcategory"  value="#{auctionBean.subcategoryId}">
+                                    <f:selectItem itemValue="1" itemLabel="subkategoria 1" />
+                                    <f:selectItem itemValue="2" itemLabel="Odzież" />
+                                    <f:selectItem itemValue="3" itemLabel="Elektronika" />
+                                    <f:selectItem itemValue="4" itemLabel="Erotyka" />
+                                </h:selectOneMenu>   
+                            </div>                         
+                            <h:selectOneMenu class="category" id="category">
+                                <f:selectItem itemValue="1" itemLabel="Wybierz Kategorię" />
+                                <f:selectItem itemValue="2" itemLabel="Odzież" />
+                                <f:selectItem itemValue="3" itemLabel="Elektronika" />
+                                <f:selectItem itemValue="4" itemLabel="Erotyka" />
+                            </h:selectOneMenu>
+                            <h:outputLabel for="category" value="KATEGORIA"/>
+
+                        </p>
+                        <p>
+                            <h:selectOneMenu class="time" id="time" value="#{auctionBean.expDate}">
+                                <f:convertDateTime pattern="dd/mm/yyyy"/>
+                                <f:selectItem itemValue="02/02/2014" itemLabel="1 dzień" />
+                                <f:selectItem itemValue="02/02/2014" itemLabel="4 dni" />
+                                <f:selectItem itemValue="02/02/2014" itemLabel="7 dni" />
+                                <f:selectItem itemValue="02/02/2014" itemLabel="14 dni" />
+                            </h:selectOneMenu>
+                            <h:outputLabel for="time" class="timeLabel" value="CZAS TRWANIA"/>
+                        </p>
+                        <p>
+                            <h:inputText class="price" id="price" value="#{auctionBean.type}" pt:required="required" pt:placeholder="złotych"/>
+                            <h:outputLabel for="price" class="priceLabel" value="CENA WYWOŁAWCZA"/>
+                        </p>
+                        <h:panelGroup id="repeatImages">
                             <div class="imagesContainer" id="imagesContainer"> 
                                 <ui:repeat value="#{auctionBean.productImages}" var="oneImage">
                                     <h:graphicImage value="/image/#{oneImage.url}" width="200" height="171" />
                                 </ui:repeat>
                             </div>
-                            <p class="submitButton">
-                                <h:commandButton type="submit" value="Umieść Ogłoszenie" action="#{auctionBean.addAuction}"/>
-                            </p>
-                        </h:form>
-                    </h:panelGroup>
-                    <h:form class="imageForm" enctype="multipart/form-data">
-                        <h:inputFile id="auctionImage" value="#{auctionBean.image}"/>
-                        <h:commandButton value="DODAJ OBRAZEK">
-                            <f:ajax execute="auctionImage" render=":mainPanel"/>
-                        </h:commandButton>
+                        </h:panelGroup>
+                        <p class="submitButton">
+                            <h:commandButton type="submit" value="UMIEŚĆ OGŁOSZENIE" action="#{auctionBean.addAuction}"/>
+                        </p>
                     </h:form>
+                    <h:form class="imageForm" enctype="multipart/form-data">
+                        <div class="browseButton"><span class="browseString">PRZEGLĄDAJ...</span>
+                            <h:inputFile id="auctionImage" value="#{auctionBean.image}"> 
+                                <f:ajax execute="auctionImage" render=":mainForm:repeatImages"/>
+                            </h:inputFile>
+                        </div>
+                    </h:form>
+                    <h:messages class="messages"></h:messages>
                 </div>
             </ui:define>
         </ui:composition>
