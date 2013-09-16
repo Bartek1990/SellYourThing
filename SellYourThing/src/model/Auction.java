@@ -1,5 +1,6 @@
 package model;
 
+import java.io.File;
 import java.io.Serializable;
 
 import javax.persistence.*;
@@ -75,7 +76,16 @@ public class Auction implements Serializable {
 	//bi-directional many-to-one association to ProductImage
 	@OneToMany(mappedBy="auction", cascade = CascadeType.PERSIST)
 	private List<ProductImage> productImages;
-
+        public String getFirstImageUrl(){
+            if(!productImages.isEmpty() && productImages != null)
+            {
+                 ProductImage oneImage = productImages.get(0);
+                 File f = new File("C:/images/"+oneImage.getUrl());
+                 if(f.exists()) return oneImage.getUrl();
+                 else return "no_image.jpg";
+            }
+            else return "no_image.jpg";
+        }
 	public Auction() {
 	}
 
