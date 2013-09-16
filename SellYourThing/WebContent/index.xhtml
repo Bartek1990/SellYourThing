@@ -11,6 +11,22 @@
     <h:body>
         <ui:composition template="/WEB-INF/template/mainLayout.xhtml">
             <ui:define name="content">
+            	<div class="categories">
+            		<ul>
+            			<ui:repeat value="#{categoryListBean.category}" var="singleCategory">
+							<li>
+								<h:outputText value="#{singleCategory.name}"/>
+								<ul>
+									<ui:repeat value="#{singleCategory.subcategories}" var="singleSubCategory">
+										<li><h:outputText value="#{singleSubCategory.subName}"/></li>
+									</ui:repeat>
+								</ul>
+							</li>
+						</ui:repeat>
+            		</ul>
+            		
+            	</div>
+           		
                 <div class="grid-container auctionContainer">
                     <ui:repeat var="singleAuction" value="#{auctionListBean.auctionList}"  varStatus="status">
                         <div class="grid-25 mobile-grid-100">
