@@ -29,15 +29,13 @@ public class AuctionBean {
     private String type = "1";
     private Date expDate;
     private int subcategoryId;
-    private String status;
+    private String status = "1";
     private int auctionId;
     private String imgName;
     private List<ProductImageBean> productImages = new ArrayList<ProductImageBean>();
     private List<AuctionBean> auctionList;
     private List<Part> imagesList = new ArrayList<Part>();
     private Part image;
-
- 
 
     @EJB
     AuctionEAO service;
@@ -73,7 +71,6 @@ public class AuctionBean {
     public void setType(String type) {
         this.type = "1";
     }
-
     public Date getExpDate() {
         return expDate;
     }

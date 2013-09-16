@@ -66,7 +66,9 @@
                                 <h:outputLabel for="pesel" value="PESEL"/>
                             </p>
                             <p>
-                                <h:inputText id="pesel" value="#{regBean.pesel}" pt:required="required" pt:placeholder="91020601553"/>
+                                <h:inputText id="pesel" value="#{regBean.pesel}" pt:required="required" pt:placeholder="91020601553" validatorMessage="PESEL musi składać się z 11 cyfr">
+                                    <f:validateLength minimum="11" maximum="11"/>
+                                </h:inputText>
                             </p>
                             <p>
                                 <h:outputLabel for="bornDate" value="DATA URODZENIA (dzień/miesiąc/rok)"/>
