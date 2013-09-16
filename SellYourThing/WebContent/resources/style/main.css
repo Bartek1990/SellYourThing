@@ -88,7 +88,7 @@ body {
 	height: 20px;
 	font-size: 20px;
 	margin-top: 45px;
-	margin-left: -2px;
+	margin-left: -8px;
 	float: left;
 	color: #fff;
 }
@@ -357,7 +357,7 @@ label{
 /* registration */
 .registrationContainer{
 	width: 400px;
-	height: 1000px;
+	height: 1080px;
 	background-color: red;
 	text-align: center;
 	margin: auto;
@@ -457,60 +457,93 @@ label{
 	border: none;
 	margin-top: 40px;
 }
-.auctionCreationContainer .category{
-	float: left;
+.auctionCreationContainer .category{	
+        float: right;
+        
 	height: 30px;
 	border: none;
 	width: 150px;
 	margin-bottom: 15px;
 }
 .auctionCreationContainer .subcategory{
-	float: left;
+        float: right;
 	height: 30px;
 	border: none;
 	width: 150px;
 	margin-left: 15px;
 	margin-bottom: 15px;
+        clear:right;
 }
-.auctionCreationContainer .categoryLabel{
-	float: left;
-	clear: right;
-	margin-left: 96px;
+.auctionCreationContainer .subcategoryPlaceholder{
+        float: right;
+	height: 30px;
+	border: none;
+	width: 150px;
+	margin-right: 505px;
+	margin-bottom: 15px;
+        margin-left: 15px;
+        clear:right;
+}
+.auctionCreationContainer .categoryLabel{   
+	float: right;
+	margin-left: 196px;
 }
 
 .auctionCreationContainer .time{
-	float: left;
+	float: right;
+        clear: right;
 	height: 30px;
 	border: none;
 	width: 150px;
 	margin-bottom: 15px;
+        margin-right: 670px;
 }
 .auctionCreationContainer .timeLabel{
-	float: left;
-	margin-left: 73px;
-	clear: left;
+	float: right;
 }
 .auctionCreationContainer .price{
 	width: 20%;
 	height: 40px;
 	border: none;
-	margin-right: 20px;
-	float: left;
+	margin-right: 620px;
+	float: right;
+        clear: right;
 	margin-bottom: 15px;
 }
 .auctionCreationContainer .priceLabel{
-	float: left;
-	clear: left;
-	margin-left: 38px;
+	float: right;
 }
 .auctionCreationContainer .imageForm{
 	position: absolute;
 	top: 510px;
 	left: 177px;
 }
+
 .auctionCreationContainer .imageForm input{
 	display: block;
 	background-color: #2d231c;
+	border: none;
+	color: #fff;
+	height: 50px;
+        width: 130px;
+	font-family: Open Sans Condensed;
+	font-weight: bold;
+	font-size: 20px;
+	-moz-transition: all 0.1s linear;
+	-webkit-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+        margin-top: 15px;
+}
+.auctionCreationContainer .imageForm input:hover{
+	color: #33b9f0;
+}
+.auctionCreationContainer .imageForm .browseButton:hover{
+	color: #33b9f0;
+}
+.auctionCreationContainer .imageForm .browseButton{
+	width: 130px;
+        overflow: hidden;
+        background-color: #2d231c;
 	border: none;
 	color: #fff;
 	height: 50px;
@@ -521,8 +554,13 @@ label{
 	-webkit-transition: all 0.1s linear;
 	transition: all 0.1s linear;
 }
-.auctionCreationContainer .imageForm input:hover{
-	color: #33b9f0;
+.auctionCreationContainer .imageForm .browseButton .browseString{
+        margin-top: 10px;
+        display: block;
+}
+.auctionCreationContainer .imageForm .browseButton input{
+        opacity: 0;
+        margin-top: -38px;
 }
 .auctionCreationContainer .imagesContainer{
 	width: 63%;

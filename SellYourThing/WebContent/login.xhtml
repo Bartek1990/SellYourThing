@@ -22,10 +22,10 @@
                             <h:inputText id="username" value="#{loginBean.email}" pt:required="required" pt:placeholder="jan.nowak@sellyourthing.com"></h:inputText>
                         </p>
                         <p>
-                            <h:outputLabel for="username" value="HASŁO"/>
+                            <h:outputLabel for="password" value="HASŁO"/>
                         </p>
                         <p>
-                            <h:inputText id="password" value="#{loginBean.email}" pt:required="required" pt:placeholder="ILoveSYT"></h:inputText>
+                            <h:inputSecret id="password" value="#{loginBean.password}" pt:required="required" pt:placeholder="ILoveSYT"></h:inputSecret>
                         </p>
                         <p class="submitButton">
                             <h:commandButton value="ZALOGUJ" action="#{loginBean.login}" type="submit"/>
