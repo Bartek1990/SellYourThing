@@ -12,6 +12,7 @@ import java.util.List;
 @Entity
 @Table(name="subcategories")
 public class Subcategory implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -64,6 +65,26 @@ public class Subcategory implements Serializable {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((subName == null) ? 0 : subName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		if (!this.subName.equals(((Subcategory) obj).subName))
+			return false;
+		return true;
 	}
 
 }

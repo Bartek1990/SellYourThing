@@ -25,5 +25,6 @@ public class CategoryBean {
 	public void setSubcategories(List<SubcategoryBean> subcategories) {
 		this.subcategories = subcategories;
 	}
+
 	
 }

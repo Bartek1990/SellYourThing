@@ -29,24 +29,28 @@
                             <h:outputLabel for="description" value="OPIS"/>
                         </p>
                         <p>
-
-                            <div class="subcategoryPlaceholder">
-                                <h:selectOneMenu class="subcategory" id="subcategory"  value="#{auctionBean.subcategoryId}">
-                                    <f:selectItem itemValue="1" itemLabel="subkategoria 1" />
-                                    <f:selectItem itemValue="2" itemLabel="Odzież" />
-                                    <f:selectItem itemValue="3" itemLabel="Elektronika" />
-                                    <f:selectItem itemValue="4" itemLabel="Erotyka" />
-                                </h:selectOneMenu>   
-                            </div>                         
-                            <h:selectOneMenu class="category" id="category">
-                                <f:selectItem itemValue="1" itemLabel="Wybierz Kategorię" />
-                                <f:selectItem itemValue="2" itemLabel="Odzież" />
-                                <f:selectItem itemValue="3" itemLabel="Elektronika" />
-                                <f:selectItem itemValue="4" itemLabel="Erotyka" />
+                            <h:outputLabel for="category" value="KATEGORIA"/>           
+                            <h:selectOneMenu class="category" id="category" converter="#{categoryConverterBean}" value="#{auctionBean.category}">	
+                                <f:selectItems 
+                                	value="#{categoryListBean.category}" 
+                                	var="category"
+                       				itemLabel="#{category.name}" 
+                       				itemValue="#{category}" 
+                       			/>
                             </h:selectOneMenu>
-                            <h:outputLabel for="category" value="KATEGORIA"/>
-
                         </p>
+                        <p>
+                            <h:outputLabel for="subcategory" value="SUBKATEGORIA"/>           
+                            <h:selectOneMenu class="subcategory" id="subcategory" converter="#{subcategoryConverterBean}" value="#{auctionBean.subCategory}">	
+                                <f:selectItems 
+                                	value="#{categoryListBean.subcategory}" 
+                                	var="subcategory"
+                       				itemLabel="#{subcategory.subName}" 
+                       				itemValue="#{subcategory}" 
+                       			/>
+                            </h:selectOneMenu>
+                        </p>
+                        
                         <p>
                             <h:selectOneMenu class="time" id="time" value="#{auctionBean.expDate}">
                                 <f:convertDateTime pattern="dd/mm/yyyy"/>
@@ -58,7 +62,7 @@
                             <h:outputLabel for="time" class="timeLabel" value="CZAS TRWANIA"/>
                         </p>
                         <p>
-                            <h:inputText class="price" id="price" value="#{auctionBean.type}" pt:required="required" pt:placeholder="złotych"/>
+                            <h:inputText class="price" id="price" value="#{auctionBean.price}" pt:required="required" pt:placeholder="złotych"/>
                             <h:outputLabel for="price" class="priceLabel" value="CENA WYWOŁAWCZA"/>
                         </p>
                         <h:panelGroup id="repeatImages">

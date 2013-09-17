@@ -17,18 +17,27 @@ import model.Category;
 public class CategoryListBean {
 	
 	private List<CategoryBean> category;
+	private List<SubcategoryBean> subcategory;
 	
 	@EJB
 	CategoryEAO service;
 	
 	public List<CategoryBean> getCategory() {
-		category = null;
+		
 		category = service.getCategories();
 		return category;
 		
 	}
 	public void setCategory(List<CategoryBean> category) {
 		this.category = category;
+	}
+	
+	public List<SubcategoryBean> getSubcategory() {
+		subcategory = service.getSubcategories();
+		return subcategory;
+	}
+	public void setSubcategory(List<SubcategoryBean> subcategory) {
+		this.subcategory = subcategory;
 	}
 	
 }

@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.beans.CategoryBean;
+import com.beans.SubcategoryBean;
 
 @Stateless
 @LocalBean
@@ -24,6 +25,12 @@ public class CategoryEAO {
 		
 		Query query = entityManager.createQuery("SELECT e FROM Category e");
 		
+		return query.getResultList();
+	}
+	public List<SubcategoryBean> getSubcategories()
+	{	
+		
+		Query query = entityManager.createQuery("SELECT e FROM Subcategory e");
 		return query.getResultList();
 	}
 }

@@ -17,6 +17,7 @@ import javax.persistence.Query;
 import javax.transaction.UserTransaction;
 
 import model.Auction;
+import model.Biding;
 import model.Subcategory;
 import model.ProductImage;
 import java.io.File;
@@ -53,13 +54,14 @@ public class AuctionEAO {
             auction.setType(auctionBean.getType());
             auction.setExpDate(auctionBean.getExpDate());
             auction.setStatus(auctionBean.getStatus());
-            //pobieram narazie id kategori
-            String subCategoryName = "aaa";	
+            List<Biding> bidings = new ArrayList<Biding>();
+            Biding newBid = new Biding();
+            newBid.setAuction(auction);
+            newBid.setCurrentPrice(Double.parseDouble(auctionBean.getPrice()));
             
-            Query query = this.entityManager.createQuery("SELECT c FROM Subcategory c WHERE c.subName=?1");
-            query.setParameter("1", subCategoryName);
-            Object nowy = query.getSingleResult();
-            auction.setSubcategory((Subcategory) nowy);
+            bidings.add(newBid);
+            auction.setBidings(bidings);
+            auction.setSubcategory(auctionBean.getSubCategory());
             //uzupe�nienie obrazk�w
             List<ProductImage> productImages = new ArrayList<ProductImage>();
             for(ProductImageBean imageBean : auctionBean.getProductImages())

@@ -61,6 +61,18 @@
             <role-name>Moderator</role-name>
         </auth-constraint>
     </security-constraint>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>User Area</web-resource-name>
+            <url-pattern>/faces/user/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Administrator</role-name>
+            <role-name>Moderator</role-name>
+            <role-name>User</role-name>
+        </auth-constraint>
+    </security-constraint>
  
  
     <error-page>

@@ -11,9 +11,15 @@ import javax.faces.context.FacesContext;
 import static java.nio.file.StandardCopyOption.*;
 import javax.servlet.http.Part;
 
+import model.Biding;
+import model.Category;
+import model.Subcategory;
+
 import java.io.IOException;
 
 import com.ejb.eao.AuctionEAO;
+import com.ejb.eao.CategoryEAO;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
@@ -27,9 +33,11 @@ public class AuctionBean {
     private String title;
     private String description;
     private String type = "1";
+    private String price;
     private Date expDate;
-    private int subcategoryId;
-    private String status = "1";
+    private Category category;
+    private Subcategory subCategory;
+	private String status = "1";
     private int auctionId;
     private String imgName;
     private List<ProductImageBean> productImages = new ArrayList<ProductImageBean>();
@@ -63,8 +71,24 @@ public class AuctionBean {
     public void setDescription(String description) {
         this.description = description;
     }
+    
+    public Subcategory getSubCategory() {
+		return subCategory;
+	}
 
-    public String getType() {
+	public void setSubCategory(Subcategory subCategory) {
+		this.subCategory = subCategory;
+	}
+	
+    public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getType() {
         return type;
     }
 
@@ -79,14 +103,6 @@ public class AuctionBean {
         this.expDate = expDate;
     }
 
-    public int getSubcategoryId() {
-        return subcategoryId;
-    }
-
-    public void setSubcategoryId(int subcategoryId) {
-        this.subcategoryId = subcategoryId;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -98,11 +114,16 @@ public class AuctionBean {
     public String getImgName() {
         return imgName;
     }
+    public Category getCategory() {
+		return category;
+	}
 
-    public void setImgName(String imgName) {
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	public void setImgName(String imgName) {
         this.imgName = imgName;
     }
-
     public List<ProductImageBean> getProductImages() {
         return productImages;
     }
@@ -114,12 +135,28 @@ public class AuctionBean {
     private void addMessage(FacesMessage message) {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
+    private boolean validCategory()
+    {
+    	for(Subcategory subs : this.category.getSubcategories())
+    	{
+    		if(subs.equals(this.subCategory))
+    		{
+    			return true;
+    		}
+    	}
+    	return false;
+    }
     public String addAuction() {
-        if (service.persistAuction(this)) {
-            addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Aukcja dodana!", null));
-            return "add";
-        }
-        addMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Blad podczas dodawania aukcji!", null));
+    	if(validCategory())
+    	{
+	        if (service.persistAuction(this)) {
+	            addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Aukcja dodana!", null));
+	            return "add";
+	        }
+	        addMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Blad podczas dodawania aukcji!", null));
+	        return "failure";
+    	}
+    	addMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Niepoprawnie dopasowane kategorie!", null));
         return "failure";
     }
 
@@ -163,4 +200,5 @@ public class AuctionBean {
     public void setAuctionList(List<AuctionBean> auctionList) {
         this.auctionList = service.getAllAuctions();
     }
+    
 }
