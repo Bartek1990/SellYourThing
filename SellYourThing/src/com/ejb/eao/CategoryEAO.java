@@ -14,23 +14,31 @@ import com.beans.SubcategoryBean;
 @Stateless
 @LocalBean
 public class CategoryEAO {
-	@PersistenceContext()
+
+    @PersistenceContext()
     EntityManager entityManager;
-	
-	public CategoryEAO()
-	{	
-	}
-	public List<CategoryBean> getCategories()
-	{	
-		
-		Query query = entityManager.createQuery("SELECT e FROM Category e");
-		
-		return query.getResultList();
-	}
-	public List<SubcategoryBean> getSubcategories()
-	{	
-		
-		Query query = entityManager.createQuery("SELECT e FROM Subcategory e");
-		return query.getResultList();
-	}
+    private List<SubcategoryBean> sublist;
+
+    public CategoryEAO() {
+    }
+
+    public List<CategoryBean> getCategories() {
+        Query query = entityManager.createQuery("SELECT e FROM Category e");
+        return query.getResultList();
+    }
+
+    public List<SubcategoryBean> getSubcategories() {
+
+        return sublist;
+    }
+
+    public void setSubcategories(String catName) {
+        if (catName != null) {
+            Query query = entityManager.createQuery("SELECT e FROM Subcategory e WHERE e.category.name=:categoryName");
+            query.setParameter("categoryName", catName);
+            sublist = query.getResultList();
+        } else {
+            sublist = null;
+        }
+    }
 }

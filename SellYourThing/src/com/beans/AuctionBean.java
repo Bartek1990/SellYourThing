@@ -35,9 +35,9 @@ public class AuctionBean {
     private String type = "1";
     private String price;
     private Date expDate;
-    private Category category;
+    private Category category = new Category();
     private Subcategory subCategory;
-	private String status = "1";
+    private String status = "1";
     private int auctionId;
     private String imgName;
     private List<ProductImageBean> productImages = new ArrayList<ProductImageBean>();
