@@ -29,28 +29,35 @@
                             <h:outputLabel for="description" value="OPIS"/>
                         </p>
                         <p>
-                            <h:outputLabel for="category" value="KATEGORIA"/>           
+
+                            <div class="subcategoryPlaceholder">
+                                <h:panelGrid id="subcategoryPanel" >
+                                    <h:selectOneMenu rendered="#{categoryConverterBean.rendered}" class="subcategory" id="subcategory" converter="#{subcategoryConverterBean}" value="#{auctionBean.subCategory}">	
+                                        <f:selectItems 
+                                            value="#{categoryListBean.subcategory}" 
+                                            var="subcategory"
+                                            itemLabel="#{subcategory.subName}" 
+                                            itemValue="#{subcategory}" 
+                                            />
+                                    </h:selectOneMenu>
+                                </h:panelGrid>
+                            </div>
+
                             <h:selectOneMenu class="category" id="category" converter="#{categoryConverterBean}" value="#{auctionBean.category}">	
+                                <f:ajax execute="@form" render="subcategoryPanel" listener="#{categoryConverterBean.loadSubcategories()}"/>
+                                <f:selectItem itemLabel="Wybierz Kategorię" itemValue="#{auctionBean.category}"/>
                                 <f:selectItems 
-                                	value="#{categoryListBean.category}" 
-                                	var="category"
-                       				itemLabel="#{category.name}" 
-                       				itemValue="#{category}" 
-                       			/>
+                                    value="#{categoryListBean.category}" 
+                                    var="category"
+                                    itemLabel="#{category.name}" 
+                                    itemValue="#{category}" 
+                                    />
                             </h:selectOneMenu>
+
+
+                            <h:outputLabel for="category" value="KATEGORIA"/>  
                         </p>
-                        <p>
-                            <h:outputLabel for="subcategory" value="SUBKATEGORIA"/>           
-                            <h:selectOneMenu class="subcategory" id="subcategory" converter="#{subcategoryConverterBean}" value="#{auctionBean.subCategory}">	
-                                <f:selectItems 
-                                	value="#{categoryListBean.subcategory}" 
-                                	var="subcategory"
-                       				itemLabel="#{subcategory.subName}" 
-                       				itemValue="#{subcategory}" 
-                       			/>
-                            </h:selectOneMenu>
-                        </p>
-                        
+
                         <p>
                             <h:selectOneMenu class="time" id="time" value="#{auctionBean.expDate}">
                                 <f:convertDateTime pattern="dd/mm/yyyy"/>
