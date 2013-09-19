@@ -21,8 +21,10 @@ public class SubcategoryConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext arg0, UIComponent arg1, String value) {
 		// TODO Auto-generated method stub
+            System.out.println("wybrales: " + value);
 		Query query = em.createQuery("SELECT c FROM Subcategory c WHERE c.subName=?1");
         query.setParameter("1", value);
+        System.out.println("pobralem: " + ((Subcategory)query.getSingleResult()).getSubName());
 		return query.getSingleResult();
 	}
 

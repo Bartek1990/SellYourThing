@@ -25,11 +25,6 @@ public class Biding implements Serializable {
 	@JoinColumn(name="Auctionauction_id")
 	private Auction auction;
 
-	//bi-directional many-to-one association to AuctionBot
-	@ManyToOne
-	@JoinColumn(name="Auction_botbot_id")
-	private AuctionBot auctionBot;
-
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="Useruser_id")
@@ -60,14 +55,6 @@ public class Biding implements Serializable {
 
 	public void setAuction(Auction auction) {
 		this.auction = auction;
-	}
-
-	public AuctionBot getAuctionBot() {
-		return this.auctionBot;
-	}
-
-	public void setAuctionBot(AuctionBot auctionBot) {
-		this.auctionBot = auctionBot;
 	}
 
 	public User getUser() {

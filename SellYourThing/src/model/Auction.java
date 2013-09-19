@@ -53,7 +53,7 @@ public class Auction implements Serializable {
 	private List<User> users;
 
 	//bi-directional many-to-one association to Biding
-	@OneToMany(mappedBy="auction")
+	@OneToMany(mappedBy="auction", cascade = CascadeType.PERSIST)
 	private List<Biding> bidings;
         public double getHigherBid()
         {

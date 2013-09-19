@@ -61,6 +61,7 @@ public class AuctionEAO {
             
             bidings.add(newBid);
             auction.setBidings(bidings);
+            System.out.println("DRUKUJE: " + auctionBean.getSubCategory());
             auction.setSubcategory(auctionBean.getSubCategory());
             //uzupe�nienie obrazk�w
             List<ProductImage> productImages = new ArrayList<ProductImage>();

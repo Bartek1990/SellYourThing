@@ -33,6 +33,7 @@
                             <div class="subcategoryPlaceholder">
                                 <h:panelGrid id="subcategoryPanel" >
                                     <h:selectOneMenu rendered="#{categoryConverterBean.rendered}" class="subcategory" id="subcategory" converter="#{subcategoryConverterBean}" value="#{auctionBean.subCategory}">	
+               
                                         <f:selectItems 
                                             value="#{categoryListBean.subcategory}" 
                                             var="subcategory"
@@ -44,7 +45,7 @@
                             </div>
 
                             <h:selectOneMenu class="category" id="category" converter="#{categoryConverterBean}" value="#{auctionBean.category}">	
-                                <f:ajax execute="@form" render="subcategoryPanel" listener="#{categoryConverterBean.loadSubcategories()}"/>
+                                <f:ajax execute="category" render="subcategoryPanel" listener="#{categoryConverterBean.loadSubcategories()}"/>
                                 <f:selectItem itemLabel="Wybierz Kategorię" itemValue="#{auctionBean.category}"/>
                                 <f:selectItems 
                                     value="#{categoryListBean.category}" 
