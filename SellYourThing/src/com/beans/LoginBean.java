@@ -18,10 +18,13 @@ public class LoginBean {
 	
 	public LoginBean()
 	{
+		/*
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 	    if(session != null){
 	        session.invalidate();
+	        
 	    }
+	    */
 	}
 
 	public String getEmail() {
@@ -51,15 +54,15 @@ public class LoginBean {
 			
 			if(request.isUserInRole("Administrator"))
 			{
-				message = "U�ytkownik: " + principal.getName();
+				message = "Użytkownik: " + principal.getName();
 				navTo = "admin";
 			} else if(request.isUserInRole("Moderator"))
 			{
-				message = "U�ytkownik: " + principal.getName();
+				message = "Użytkownik: " + principal.getName();
 				navTo = "moderator";
 			} else if(request.isUserInRole("User"))
 			{
-				message = "U�ytkownik: " + principal.getName();
+				message = "Użytkownik: " + principal.getName();
 				navTo = "user";
 			}
 			FacesContext.getCurrentInstance().addMessage(
@@ -79,7 +82,6 @@ public class LoginBean {
         if(session != null){
             session.invalidate();
         }
-        System.out.println("INFO Z LOGINBEAN: wylogowano");
         FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/login.xhtml");
 	}
 	
