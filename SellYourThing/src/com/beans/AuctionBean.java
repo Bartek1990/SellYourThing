@@ -23,6 +23,9 @@ import com.ejb.eao.CategoryEAO;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.User;
@@ -106,6 +109,7 @@ public class AuctionBean {
 
     public void setExpDate(Date expDate) {
         this.expDate = expDate;
+        System.out.print(this.expDate.toString());
     }
 
     public String getStatus() {
@@ -202,7 +206,13 @@ public class AuctionBean {
         }
         return null;
     }
-
+    public String calculateExpDate(int days) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.DATE, days);
+        Format formatter = new SimpleDateFormat("dd/MM/yyyy");
+        return formatter.format(cal.getTime());
+    }
     public List<AuctionBean> getAuctionList() {
         return auctionList;
     }

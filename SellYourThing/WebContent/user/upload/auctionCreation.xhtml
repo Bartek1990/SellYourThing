@@ -61,11 +61,11 @@
 
                         <p>
                             <h:selectOneMenu class="time" id="time" value="#{auctionBean.expDate}">
-                                <f:convertDateTime pattern="dd/mm/yyyy"/>
-                                <f:selectItem itemValue="02/02/2014" itemLabel="1 dzień" />
-                                <f:selectItem itemValue="02/02/2014" itemLabel="4 dni" />
-                                <f:selectItem itemValue="02/02/2014" itemLabel="7 dni" />
-                                <f:selectItem itemValue="02/02/2014" itemLabel="14 dni" />
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                <f:selectItem itemValue="#{auctionBean.calculateExpDate(1)}" itemLabel="1 dzień" />
+                                <f:selectItem itemValue="#{auctionBean.calculateExpDate(4)}" itemLabel="4 dni" />
+                                <f:selectItem itemValue="#{auctionBean.calculateExpDate(7)}" itemLabel="7 dni" />
+                                <f:selectItem itemValue="#{auctionBean.calculateExpDate(14)}" itemLabel="14 dni" />
                             </h:selectOneMenu>
                             <h:outputLabel for="time" class="timeLabel" value="CZAS TRWANIA"/>
                         </p>
