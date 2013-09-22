@@ -402,7 +402,7 @@ label{
 /*---AuctionCreation---*/
 .auctionCreationContainer{
 	width: 1000px;
-	height: 700px;
+	height: 750px;
 	background-color: red;
 	text-align: center;
 	margin: auto;
@@ -587,7 +587,7 @@ label{
 /*AUCTION*/
 .singleAuctionContainer{
 	width: 1000px;
-	height: 700px;
+	height: 800px;
 	background-color: red;
 	text-align: center;
 	margin: auto;
@@ -600,7 +600,6 @@ label{
 .singleAuctionContainer .imagesContainer{
 	height: 700px;
 	width: 40%;
-	margin-top: -100px;
 	float: left;
 	text-align: center;
 }
@@ -612,6 +611,9 @@ label{
 	margin-left: 10px;
 	margin-top: 10px;
 	opacity: 1;
+}
+.singleAuctionContainer .imagesContainer form{
+    display: inline;
 }
 .singleAuctionContainer .imagesContainer img{
 	width: 100px;
@@ -634,7 +636,6 @@ label{
 }
 .singleAuctionContainer h1{
 	float: right;
-	margin-top: -80px;
 	width: 60%;
 }
 .singleAuctionContainer .bidding{
@@ -661,14 +662,14 @@ label{
 	font-size: 25px;
 	float: left;
 	margin-left: 300px;
-	font-weight: bold;
+        font-weight: bold;
 }
 .singleAuctionContainer .submit:hover{
 	color: #33b9f0;
 }
 .singleAuctionContainer .description{
 	text-align: justify;
-	height: 600px;
+	height: 500px;
 	font-weight: normal;
 	margin-left: 20px;
 	margin-right: 20px;
@@ -685,4 +686,11 @@ label{
 .singleAuctionContainer .higherBid span{
 	color: #33b9f0;
 	font-size: 30px;
+}
+.singleAuctionContainer .messages{
+    height: 50px;
+    float: left;
+    text-align: left;
+    margin-left: -50px;
+    margin-top: 30px;
 }

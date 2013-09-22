@@ -3,19 +3,24 @@ package com.beans;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import model.Auction;
 
+@ViewScoped
 @ManagedBean
-public class AuctionListBean 
-{
+public class AuctionListBean {
+
     @PersistenceContext()
     EntityManager entityManager;
-    private List<AuctionBean> auctionList;
-	public List<AuctionBean> getAuctionList() {
-		Query query = entityManager.createQuery("SELECT e FROM Auction e");
-		auctionList = (List<AuctionBean>) query.getResultList();
-		return auctionList;
-	}
+    private List<Auction> auctionList;
+
+    public List<Auction> getAuctionList() {
+        Query query = entityManager.createQuery("SELECT e FROM Auction e");
+        query.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        auctionList = (List<Auction>) query.getResultList();
+        return auctionList;
+    }
 }

@@ -10,22 +10,33 @@
         <ui:composition template="/WEB-INF/template/mainLayout.xhtml">
             <ui:define name="content">
                 <div class="singleAuctionContainer">
-			<div class="imagesContainer">
-				<img class="mainImage" src="resources/img/bucik.jpg"/>
-				<img src="resources/img/bucik.jpg"/>
-				<img src="resources/img/bucik.jpg"/>
-				<img src="resources/img/bucik.jpg"/>
-				<img src="resources/img/bucik.jpg"/>
-				<img src="resources/img/bucik.jpg"/>
-			</div>
-			<h1>TYTUŁ AUKCJI</h1>
-			<div class="description"> Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji Opis aukcji</div>
-			<div class="higherBid"><span>AKTUALNA CENA:</span> 100 <span>ZŁ</span></div>
-			<form class="bidding">
-				<input class="submit" type="submit" value="LICYTUJ"/>
-				<input class="price"/>
-			</form>
-		</div>
+                    <div class="imagesContainer">
+                        <h:graphicImage id="mainImage" class="mainImage" value="image/#{auctionDetailsBean.mainImageUrl}"/>
+                        <ui:repeat var="oneImage" value="#{auctionDetailsBean.productImages}">
+                            <h:form>
+                                <h:commandLink action="#{auctionDetailsBean.setMainImageUrl(oneImage.url)}">
+                                    <f:ajax render=":mainImage"/>
+                                    <h:graphicImage value="image/#{oneImage.url}"/>
+                                </h:commandLink>
+                            </h:form>
+                        </ui:repeat>
+                    </div>
+                    <h1><h:outputLabel value="#{auctionDetailsBean.title}"/></h1>
+                    <div class="description"><h:outputLabel value="#{auctionDetailsBean.description}"/></div>
+                    <div class="higherBid"><span>AKTUALNA CENA:</span> 
+                        <h:outputLabel value="#{auctionDetailsBean.price}">
+                            <f:convertNumber minFractionDigits="2" />
+                        </h:outputLabel> 
+                        <span>ZŁ</span>
+                    </div>
+                    
+                    <h:form class="bidding">
+                        <h:commandButton class="submit" value="LICYTUJ"/>
+                        <h:inputText class="price" value="#{auctionDetailsBean.price}"/>
+                    </h:form>        
+                    <h:messages class="messages"/>
+                </div>
+                
             </ui:define>
         </ui:composition>
 

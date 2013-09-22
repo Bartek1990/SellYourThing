@@ -28,36 +28,42 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import model.User;
 
-
 @Stateful
 @LocalBean
-
 public class AuctionEAO {
-
 
     @PersistenceContext()
     EntityManager entityManager;
-    
-    public AuctionEAO() 
-    {
+
+    public AuctionEAO() {
     }
-    public List<AuctionBean> getAllAuctions(){
-    	Query query = entityManager.createQuery("SELECT e FROM Auction e");
-		return query.getResultList();
+
+    public List<AuctionBean> getAllAuctions() {
+        Query query = entityManager.createQuery("SELECT e FROM Auction e");
+        return query.getResultList();
     }
-    public User getUserByEmail(String email)
-    {
-      return (User) entityManager.createQuery(
-          "SELECT e FROM User e WHERE e.email=:emailVal"
-          )
-          .setParameter("emailVal", email)
-          .getSingleResult();
-      
-    } 
+
+    public User getUserByEmail(String email) {
+        return (User) entityManager.createQuery(
+                "SELECT e FROM User e WHERE e.email=:emailVal")
+                .setParameter("emailVal", email)
+                .getSingleResult();
+
+    }
+
+    public void persistBid(double bid, int auctionId, String userEmail) {
+        Biding newBid = new Biding();
+        User user = getUserByEmail(userEmail);
+        Auction auction = (Auction) entityManager.createQuery("SELECT e FROM Auction e WHERE e.auctionId=:auctionId").setParameter("auctionId", auctionId).getSingleResult();
+        newBid.setCurrentPrice(bid);
+        newBid.setAuction(auction);
+        newBid.setUser(user);
+        entityManager.persist(newBid);
+    }
+
     public boolean persistAuction(AuctionBean auctionBean) {
-        try 
-        {
-        	Auction auction;
+        try {
+            Auction auction;
             auction = new Auction();
             auction.setTitle(auctionBean.getTitle());
             auction.setDescription(auctionBean.getDescription());
@@ -68,15 +74,13 @@ public class AuctionEAO {
             Biding newBid = new Biding();
             newBid.setAuction(auction);
             newBid.setCurrentPrice(Double.parseDouble(auctionBean.getPrice()));
-            System.out.println("oto user: " + auctionBean.getUserA().getEmail());
-            newBid.setUser(auctionBean.getUserA()); 
+            newBid.setUser(auctionBean.getUserA());
             bidings.add(newBid);
             auction.setBidings(bidings);
             auction.setSubcategory(auctionBean.getSubCategory());
             //uzupełnienie obrazków
             List<ProductImage> productImages = new ArrayList<ProductImage>();
-            for(ProductImageBean imageBean : auctionBean.getProductImages())
-            {
+            for (ProductImageBean imageBean : auctionBean.getProductImages()) {
                 ProductImage prodIm = new ProductImage();
                 prodIm.setUrl(imageBean.getUrl());
                 prodIm.setTitle(imageBean.getTitle());
@@ -84,7 +88,7 @@ public class AuctionEAO {
                 productImages.add(prodIm);
             }
             auction.setProductImages(productImages);
-            
+
             entityManager.persist(auction);
             return true;
         } catch (ClassCastException e) {
