@@ -21,11 +21,11 @@
                 <ul>
 
 
-                    <h:panelGroup rendered="#{empty loginBean.email}">
+                    <h:panelGroup rendered="#{!(facesContext.externalContext.isUserInRole('Administrator') or facesContext.externalContext.isUserInRole('User'))}">
                         <li><a href="/SellYourThing/registration.xhtml">ZAREJESTRUJ</a></li>
                         <li><a href="/SellYourThing/login.xhtml"><div class="userImage"><img src="/SellYourThing/resources/img/user.png"/></div>ZALOGUJ</a></li>
                     </h:panelGroup>
-                    <h:panelGroup rendered="#{not empty loginBean.email}">
+                    <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('Administrator') or facesContext.externalContext.isUserInRole('User')}">
                         <h:form>
                             <li> <h:commandLink value="WYLOGUJ" action="#{loginBean.logout()}"><div class="userImage"><img src="/SellYourThing/resources/img/user.png"/></div></h:commandLink></li>
                         </h:form>
