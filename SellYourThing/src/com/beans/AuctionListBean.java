@@ -18,8 +18,4 @@ public class AuctionListBean
 		auctionList = (List<AuctionBean>) query.getResultList();
 		return auctionList;
 	}
-	public Auction getSingleAuction()
-	{
-		
-	}
 }

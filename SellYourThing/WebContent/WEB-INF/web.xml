@@ -28,9 +28,11 @@
             <form-error-page>/login.xhtml</form-error-page>
         </form-login-config>
     </login-config>
+    
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
+    
     <security-role>
         <role-name>Administrator</role-name>
     </security-role>

@@ -10,79 +10,69 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@ManagedBean(name="loginBean")
+@ManagedBean(name = "loginBean")
 @SessionScoped
 public class LoginBean {
-	private String email;
-	private String password;
-	
-	public LoginBean()
-	{
-		/*
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-	    if(session != null){
-	        session.invalidate();
-	        
-	    }
-	    */
-	}
 
-	public String getEmail() {
-		return email;
-	}
+    private String email;
+    private String password;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public LoginBean() {
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String login()
-	{
-		String message = "";
-		String navTo = "";
-		
-		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		try {
-			request.login(email, password);
-			Principal principal = request.getUserPrincipal();
-			
-			if(request.isUserInRole("Administrator"))
-			{
-				message = "Użytkownik: " + principal.getName();
-				navTo = "admin";
-			} else if(request.isUserInRole("Moderator"))
-			{
-				message = "Użytkownik: " + principal.getName();
-				navTo = "moderator";
-			} else if(request.isUserInRole("User"))
-			{
-				message = "Użytkownik: " + principal.getName();
-				navTo = "user";
-			}
-			FacesContext.getCurrentInstance().addMessage(
-					null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
-	        return navTo;
-		} catch (ServletException e) {
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String login() {
+        String message = "";
+        String navTo = "";
+
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        try {
+            request.login(email, password);
+            Principal principal = request.getUserPrincipal();
+            if (request.isUserInRole("Administrator")) {
+                message = "Użytkownik: " + principal.getName();
+                navTo = "admin";
+            } else if (request.isUserInRole("Moderator")) {
+                message = "Użytkownik: " + principal.getName();
+                navTo = "moderator";
+            } else if (request.isUserInRole("User")) {
+                message = "Użytkownik: " + principal.getName();
+                navTo = "user";
+            }
             FacesContext.getCurrentInstance().addMessage(
-            		null, new FacesMessage(FacesMessage.SEVERITY_ERROR, 
-            				"Wystąpił błąd. Nie zalogowano!", null));
+                    null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
+            return navTo;
+        } catch (ServletException e) {
+            FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Wystąpił błąd. Nie zalogowano!", null));
             e.printStackTrace();
         }
-		return "failure";
-	}
-	public void logout()
-	{
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        if(session != null){
+        return "failure";
+    }
+
+    public String logout() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        if (session != null) {
             session.invalidate();
         }
+        System.out.println("INFO Z LOGINBEAN: wylogowano");
         FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/login.xhtml");
-	}
-	
+        return "loggedout";
+    }
 }

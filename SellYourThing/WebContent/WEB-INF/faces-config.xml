@@ -3,16 +3,56 @@
 <!-- =========== FULL CONFIGURATION FILE ================================== -->
 
 <faces-config version="2.1"
-    xmlns="http://java.sun.com/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
-	<navigation-rule>
-		<display-name>login.xhtml</display-name>
-		<from-view-id>/login.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>failure</from-outcome>
-			<to-view-id>/login.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+
+    <navigation-rule>
+        <display-name>login.xhtml</display-name>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+        
+        
+    <navigation-rule>
+        <display-name>login.xhtml</display-name>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>admin</from-outcome>
+            <to-view-id>/index.html</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>login.xhtml</display-name>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>moderator</from-outcome>
+            <to-view-id>/index.html</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>login.xhtml</display-name>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>user</from-outcome>
+            <to-view-id>/index.html</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+        
+	
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>loggedout</from-outcome>
+            <to-view-id>/index.html</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
 
 </faces-config>
