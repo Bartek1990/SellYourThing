@@ -52,7 +52,10 @@ public class AuctionDetailsBean {
         subCategory = auction.getSubcategory();
         productImages = auction.getProductImages();
         price = auction.getHigherBid();
-        mainImageUrl = productImages.get(0).getUrl();
+        if(!productImages.isEmpty())
+            mainImageUrl = productImages.get(0).getUrl();
+        else
+            mainImageUrl = "no_image.jpg";
         auctionId = auction.getAuctionId();
         return "auctionDetails";
     }
