@@ -11,14 +11,12 @@ import javax.faces.context.FacesContext;
 import static java.nio.file.StandardCopyOption.*;
 import javax.servlet.http.Part;
 
-import model.Biding;
 import model.Category;
 import model.Subcategory;
 
 import java.io.IOException;
 
 import com.ejb.eao.AuctionEAO;
-import com.ejb.eao.CategoryEAO;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;

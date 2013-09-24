@@ -11,7 +11,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import model.Auction;
-import model.Biding;
 import model.Category;
 import model.ProductImage;
 import model.Subcategory;

@@ -7,8 +7,6 @@ import javax.faces.bean.ManagedBean;
 
 import com.ejb.eao.CategoryEAO;
 
-import model.Category;
-
 @ManagedBean
 public class CategoryListBean {
 

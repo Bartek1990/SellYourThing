@@ -7,25 +7,14 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionManagement;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.UserTransaction;
 
 import model.Auction;
 import model.Biding;
-import model.Subcategory;
 import model.ProductImage;
-import java.io.File;
-import java.io.FileInputStream;
 
-import javax.annotation.Resource;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import model.User;
 
 @Stateful
