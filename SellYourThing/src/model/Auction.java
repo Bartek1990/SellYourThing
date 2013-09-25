@@ -127,6 +127,7 @@ public class Auction implements Serializable {
 
 	public void setTitle(String title) {
 		this.title = title;
+                System.out.println("SETTITLE MODEL: " + title);
 	}
 
 	public String getType() {

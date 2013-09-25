@@ -4,8 +4,15 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.NoneScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import com.ejb.eao.CategoryEAO;
+import javax.faces.bean.ManagedProperty;
+
+import model.Category;
 
 @ManagedBean
 public class CategoryListBean {

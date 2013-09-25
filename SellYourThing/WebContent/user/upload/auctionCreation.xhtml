@@ -21,11 +21,13 @@
                     </div>
                     <h:form id="mainForm">
                         <p>
-                            <h:inputText class="title" id="title" value="#{auctionBean.title}" pt:required="required"/>
+                            <h:inputText class="title" id="title" value="#{auctionBean.title}" pt:required="required" maxlength="50"/>
                             <h:outputLabel for="title" value=" TYTUŁ AUKCJI"/>
                         </p>
                         <p>
-                            <h:inputTextarea class="description" id="description" pt:required="required" value="#{auctionBean.description}"/>
+                            <h:inputTextarea class="description" id="description" pt:required="required" value="#{auctionBean.description}" validatorMessage="Opis jest zbyt długi. Maksymalna ilość znaków to 1000">
+                                <f:validateLength maximum="1000" />
+                            </h:inputTextarea>
                             <h:outputLabel for="description" value="OPIS"/>
                         </p>
                         <p>
@@ -45,6 +47,7 @@
                             </div>
 
                             <h:selectOneMenu class="category" id="category" converter="#{categoryConverterBean}" value="#{auctionBean.category}">	
+                                <f:validator validatorId="categoryValidator"/>
                                 <f:ajax execute="category" render="subcategoryPanel" listener="#{categoryConverterBean.loadSubcategories()}"/>
                                 <f:selectItem itemLabel="Wybierz Kategorię" itemValue="#{auctionBean.category}"/>
                                 <f:selectItems 

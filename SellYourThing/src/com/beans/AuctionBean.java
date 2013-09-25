@@ -11,12 +11,14 @@ import javax.faces.context.FacesContext;
 import static java.nio.file.StandardCopyOption.*;
 import javax.servlet.http.Part;
 
+import model.Biding;
 import model.Category;
 import model.Subcategory;
 
 import java.io.IOException;
 
 import com.ejb.eao.AuctionEAO;
+import com.ejb.eao.CategoryEAO;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -65,6 +67,7 @@ public class AuctionBean {
     }
 
     public void setTitle(String title) {
+        System.out.println("SETTITLE " + title);
         this.title = title;
     }
 
@@ -140,7 +143,7 @@ public class AuctionBean {
     }
 
     public void setCategory(Category category) {
-        System.out.println("jestem w secie c");
+        System.out.println("jestem w secie c" + category.getName());
         this.category = category;
     }
 

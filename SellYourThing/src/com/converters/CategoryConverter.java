@@ -36,9 +36,9 @@ public class CategoryConverter implements Converter {
         // TODO Auto-generated method stub
         Query query = em.createQuery("SELECT c FROM Category c WHERE c.name=?1");
         query.setParameter("1", value);
-        
+
         if (!value.equals("Wybierz Kategorię")) {
-            System.out.println(value);
+            System.out.println("dsad" + value);
             rendered = true;
             categoryName = value;
             return query.getSingleResult();
