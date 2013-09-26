@@ -214,38 +214,33 @@ public class AuctionBean {
 
     public enum Days {
 
-        IN_1_DAY("1 dzień"),
-        IN_4_DAYS("4 dni"),
-        IN_7_DAYS("7 dni"),
-        IN_14_DAYS("14 dni");
+        IN_1_DAY("1 dzień", 1),
+        IN_4_DAYS("4 dni", 4),
+        IN_7_DAYS("7 dni", 7),
+        IN_14_DAYS("14 dni", 14);
         private String label;
-
-        private Days(String label) {
+        private int days;
+        private Days(String label, int days) {
             this.label = label;
+            this.days = days;
         }
 
         public String getLabel() {
             return label;
+        }
+
+        public Date calculateExpDate() {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(new Date());
+            cal.add(Calendar.DATE, this.days);
+            return cal.getTime();
         }
     }
     private Days choosenOption;
 
     public void setChoosenOption(Days choosenOption) {
         this.choosenOption = choosenOption;
-        switch (choosenOption) {
-            case IN_1_DAY:
-                this.expDate = calculateExpDate(1);
-                break;
-            case IN_4_DAYS:
-                this.expDate = calculateExpDate(4);
-                break;
-            case IN_7_DAYS:
-                this.expDate = calculateExpDate(7);
-                break;
-            case IN_14_DAYS:
-                this.expDate = calculateExpDate(14);
-                break;
-        }
+        expDate = choosenOption.calculateExpDate();
     }
 
     public Days getChoosenOption() {
@@ -254,13 +249,6 @@ public class AuctionBean {
 
     public Days[] getDays() {
         return Days.values();
-    }
-
-    public Date calculateExpDate(int days) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(new Date());
-        cal.add(Calendar.DATE, days);
-        return cal.getTime();
     }
 
     public List<AuctionBean> getAuctionList() {
