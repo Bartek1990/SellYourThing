@@ -24,7 +24,7 @@ public class Auction implements Serializable {
 
 	private String description;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="exp_date")
 	private Date expDate;
 
@@ -106,6 +106,8 @@ public class Auction implements Serializable {
 	}
 
 	public Date getExpDate() {
+                if(expDate.compareTo(new Date())>0)
+                    this.status = "0";
 		return this.expDate;
 	}
 

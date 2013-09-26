@@ -39,8 +39,8 @@ public class AuctionBean {
     private String type = "1";
     private String price;
     private Date expDate;
-    @ManagedProperty(value="#{loginBean}") 
-    private LoginBean userBean; 
+    @ManagedProperty(value = "#{loginBean}")
+    private LoginBean userBean;
     private Category category = new Category();
     private Subcategory subCategory;
     private String status = "1";
@@ -120,20 +120,23 @@ public class AuctionBean {
     public void setStatus(String status) {
         this.status = status;
     }
+
     public User getUserA() {
-    return userA;
-  }
+        return userA;
+    }
 
-  public void setUserA(User user) {
-    this.userA = user;
-  }
-  public LoginBean getUserBean() {
-    return userBean;
-  }
+    public void setUserA(User user) {
+        this.userA = user;
+    }
 
-  public void setUserBean(LoginBean userBean) {
-    this.userBean = userBean;
-  } 
+    public LoginBean getUserBean() {
+        return userBean;
+    }
+
+    public void setUserBean(LoginBean userBean) {
+        this.userBean = userBean;
+    }
+
     public String getImgName() {
         return imgName;
     }
@@ -164,7 +167,7 @@ public class AuctionBean {
     }
 
     public String addAuction() {
-        this.setUserA(service.getUserByEmail(userBean.getEmail())); 
+        this.setUserA(service.getUserByEmail(userBean.getEmail()));
         if (service.persistAuction(this)) {
             addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Aukcja dodana!", null));
             return "add";
@@ -193,8 +196,9 @@ public class AuctionBean {
         ProductImageBean img = new ProductImageBean();
         img.setTitle("tu bedzie tytul");
         img.setUrl(url);
-        System.out.println("zaraz dodam");
+        System.out.println("zaraz dodam" + url);
         productImages.add(img);
+        System.out.println("obrazek " + productImages.get(0).getUrl());
         this.image = image;
     }
 
@@ -207,13 +211,58 @@ public class AuctionBean {
         }
         return null;
     }
-    public String calculateExpDate(int days) {
+
+    public enum Days {
+
+        IN_1_DAY("1 dzień"),
+        IN_4_DAYS("4 dni"),
+        IN_7_DAYS("7 dni"),
+        IN_14_DAYS("14 dni");
+        private String label;
+
+        private Days(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+    }
+    private Days choosenOption;
+
+    public void setChoosenOption(Days choosenOption) {
+        this.choosenOption = choosenOption;
+        switch (choosenOption) {
+            case IN_1_DAY:
+                this.expDate = calculateExpDate(1);
+                break;
+            case IN_4_DAYS:
+                this.expDate = calculateExpDate(4);
+                break;
+            case IN_7_DAYS:
+                this.expDate = calculateExpDate(7);
+                break;
+            case IN_14_DAYS:
+                this.expDate = calculateExpDate(14);
+                break;
+        }
+    }
+
+    public Days getChoosenOption() {
+        return choosenOption;
+    }
+
+    public Days[] getDays() {
+        return Days.values();
+    }
+
+    public Date calculateExpDate(int days) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         cal.add(Calendar.DATE, days);
-        Format formatter = new SimpleDateFormat("dd/MM/yyyy");
-        return formatter.format(cal.getTime());
+        return cal.getTime();
     }
+
     public List<AuctionBean> getAuctionList() {
         return auctionList;
     }

@@ -30,10 +30,10 @@ public class ImageServlet extends HttpServlet {
 
     // Actions ------------------------------------------------------------------------------------
 
+    @Override
     public void init() throws ServletException {
-
         // Define base path somehow. You can define it as init-param of the servlet.
-        this.imagePath = "/images";
+        this.imagePath = "c:/images";
 
         // In a Windows environment with the Applicationserver running on the
         // c: volume, the above path is exactly the same as "c:\images".
@@ -43,12 +43,14 @@ public class ImageServlet extends HttpServlet {
         // this.imagePath = getServletContext().getRealPath("/WEB-INF/images");
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException
     {
         // Get requested image by path info.
         String requestedImage = request.getPathInfo();
 
+       
         // Check if file name is actually supplied to the request URI.
         if (requestedImage == null) {
             // Do your thing if the image is not supplied to the request URI.

@@ -19,7 +19,7 @@ public class AuctionListBean {
     private List<Auction> auctionList;
 
     public List<Auction> getAuctionList() {
-        Query query = entityManager.createQuery("SELECT e FROM Auction e");
+        Query query = entityManager.createQuery("SELECT e FROM Auction e WHERE e.status=1");
         query.setHint("javax.persistence.cache.storeMode", "REFRESH");
         auctionList = (List<Auction>) query.getResultList();
         return auctionList;
