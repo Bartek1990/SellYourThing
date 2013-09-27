@@ -67,7 +67,6 @@ public class AuctionBean {
     }
 
     public void setTitle(String title) {
-        System.out.println("SETTITLE " + title);
         this.title = title;
     }
 
@@ -84,7 +83,6 @@ public class AuctionBean {
     }
 
     public void setSubCategory(Subcategory subCategory) {
-        System.out.println("jestem w secie s");
         this.subCategory = subCategory;
     }
 
@@ -146,7 +144,6 @@ public class AuctionBean {
     }
 
     public void setCategory(Category category) {
-        System.out.println("jestem w secie c" + category.getName());
         this.category = category;
     }
 
@@ -196,9 +193,7 @@ public class AuctionBean {
         ProductImageBean img = new ProductImageBean();
         img.setTitle("tu bedzie tytul");
         img.setUrl(url);
-        System.out.println("zaraz dodam" + url);
         productImages.add(img);
-        System.out.println("obrazek " + productImages.get(0).getUrl());
         this.image = image;
     }
 

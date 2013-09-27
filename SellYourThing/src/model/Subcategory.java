@@ -44,7 +44,7 @@ public class Subcategory implements Serializable {
 	}
 
 	public String getSubName() {
-		return this.subName;
+		return this.subName.toUpperCase();
 	}
 
 	public void setSubName(String subName) {
