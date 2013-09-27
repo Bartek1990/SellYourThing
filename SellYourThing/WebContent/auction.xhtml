@@ -41,7 +41,9 @@
                     </span>
                     <h:form class="bidding">
                         <h:commandButton class="submit" value="LICYTUJ"/>
-                        <h:inputText class="price" value="#{auctionDetailsBean.price}"/>
+                        <h:inputText class="price" value="#{auctionDetailsBean.price}" validatorMessage="Nie możesz licytować za więcej niż 1,000,000zł">
+                            <f:validateLongRange maximum="1000000"/>
+                        </h:inputText>
                     </h:form>        
                     <h:messages class="messages"/>
                 </div>

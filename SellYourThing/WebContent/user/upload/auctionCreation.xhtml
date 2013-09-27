@@ -69,7 +69,9 @@
                             <h:outputLabel for="time" class="timeLabel" value="CZAS TRWANIA"/>
                         </p>
                         <p>
-                            <h:inputText class="price" id="price" value="#{auctionBean.price}" pt:required="required" pt:placeholder="złotych"/>
+                            <h:inputText class="price" id="price" value="#{auctionBean.price}" pt:required="required" pt:placeholder="złotych" validatorMessage="Kwota musi wynosić minimum 1zł i maksimum 1,000,000zł">
+                                <f:validateLongRange maximum="1000000" minimum="1"/>
+                            </h:inputText>
                             <h:outputLabel for="price" class="priceLabel" value="CENA WYWOŁAWCZA"/>
                         </p>
                         <h:panelGroup id="repeatImages">
