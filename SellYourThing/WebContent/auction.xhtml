@@ -23,20 +23,28 @@
                     </div>
                     <h1><h:outputLabel value="#{auctionDetailsBean.title}"/></h1>
                     <div class="description"><h:outputLabel value="#{auctionDetailsBean.description}"/></div>
+
                     <div class="higherBid"><span>AKTUALNA CENA:</span> 
                         <h:outputLabel value="#{auctionDetailsBean.price}">
                             <f:convertNumber minFractionDigits="2" />
                         </h:outputLabel> 
                         <span>ZŁ</span>
                     </div>
-                    
+                    <span class="timeLeft" id="timeLeft">
+                        <span>DO KOŃCA: </span>
+                        <h:outputLabel value="#{auctionDetailsBean.timeLeft}">
+                            <f:convertDateTime pattern="dd"/> dni i
+                        </h:outputLabel>
+                        <h:outputLabel value="#{auctionDetailsBean.timeLeft}">
+                            <f:convertDateTime pattern="HH:mm"/>
+                        </h:outputLabel>
+                    </span>
                     <h:form class="bidding">
                         <h:commandButton class="submit" value="LICYTUJ"/>
                         <h:inputText class="price" value="#{auctionDetailsBean.price}"/>
                     </h:form>        
                     <h:messages class="messages"/>
                 </div>
-                
             </ui:define>
         </ui:composition>
 

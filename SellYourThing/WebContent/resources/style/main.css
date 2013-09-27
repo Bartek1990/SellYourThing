@@ -238,21 +238,32 @@ body {
 }
 .singleAuction .description{
     height: 100px;
-    position: relative;
-    text-align: center;
     font-family: Open Sans Condensed;
+    text-align: center;
 }
 .singleAuction .description .title{
+    display: block;
     color: #33b9f0;
     font-weight: bold;
+    width: 100%;
+}
+.singleAuction .description .end{
+    color: #33b9f0;
+    font-weight: bold;
+    bottom: 3px;
+    font-size: 14px;
+    float: right; 
+    margin-top: 35px;
+    margin-right: 10px;
 }
 .singleAuction .description .price{
     color: #555;
     font-weight: bold;
-    position: absolute;
     bottom: 2px;
     font-size: 20px;
-    left: 10px;
+    margin-top: 27px;
+    margin-left: 10px;
+    float: left;
 }
 .singleAuction .description .price .currency{
     color: #33b9f0;
@@ -261,10 +272,19 @@ body {
 .singleAuction .description .category{
     color: #555;
     font-weight: bold;
-    position: absolute;
     bottom: 3px;
     font-size: 14px;
-    right: 10px;
+    margin-left: 10px;
+    clear: left;
+    float: left;
+}
+.singleAuction .description .expDate{
+    color: #555;
+    font-weight: bold;
+    bottom: 3px;
+    font-size: 14px;
+    margin-right: 10px;
+    float: right; 
 }
 .singleAuction .description .category .separator{
     color: #33b9f0;
@@ -674,6 +694,15 @@ label{
     float: left;
     margin-left: 300px;
     font-weight: bold;
+}
+.singleAuctionContainer .timeLeft{
+    float: right;
+    clear: right;
+    margin-right: 15px;
+    font-size: 20px;
+}
+.singleAuctionContainer .timeLeft span{
+    color: #33b9f0;
 }
 .singleAuctionContainer .submit:hover{
     color: #33b9f0;

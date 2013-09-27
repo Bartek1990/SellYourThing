@@ -2,6 +2,7 @@ package com.beans;
 
 import com.ejb.eao.AuctionEAO;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -31,6 +32,7 @@ public class AuctionDetailsBean {
     private List<ProductImage> productImages = new ArrayList<ProductImage>();
     private String mainImageUrl;
     private String message = "";
+    private Date timeLeft;
     private int auctionId;
     @EJB
     AuctionEAO service;
@@ -45,6 +47,19 @@ public class AuctionDetailsBean {
         this.userBean = userBean;
     }
 
+    public Date getTimeLeft() {
+        Calendar today = Calendar.getInstance();
+        today.setTime(new Date());
+        today.add(Calendar.DAY_OF_WEEK, 1);
+        long left = expDate.getTime() - today.getTime().getTime();
+        timeLeft = new Date(left);
+        return timeLeft;
+    }
+
+    public void setTimeLeft(Date timeLeft) {
+        this.timeLeft = timeLeft;
+    }
+
     public String details(Auction auction) {
         title = auction.getTitle();
         description = auction.getDescription();
@@ -52,10 +67,11 @@ public class AuctionDetailsBean {
         subCategory = auction.getSubcategory();
         productImages = auction.getProductImages();
         price = auction.getHigherBid();
-        if(!productImages.isEmpty())
+        if (!productImages.isEmpty()) {
             mainImageUrl = productImages.get(0).getUrl();
-        else
+        } else {
             mainImageUrl = "no_image.jpg";
+        }
         auctionId = auction.getAuctionId();
         return "auctionDetails";
     }

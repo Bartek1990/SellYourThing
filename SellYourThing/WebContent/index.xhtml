@@ -68,8 +68,15 @@
                                                     <f:convertNumber minFractionDigits="2" />
                                                 </h:outputText> 
                                                 <span class="currency">ZŁ</span>
+
                                             </span>
+                                            <span class="end">KONIEC:</span>
                                             <span class="category">UBRANIA<span class="separator"> > </span>OBUWIE</span>
+                                            <span class="expDate">
+                                                <h:outputLabel value="#{singleAuction.expDate}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                </h:outputLabel>
+                                            </span>
                                         </div>
                                     </section>
                                 </div>
