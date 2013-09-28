@@ -140,6 +140,12 @@ public class RegistrationBean {
 		addMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błąd przy rejestracji użytkownika!", null));
         return "failure";
 	}
+    public String changeGroup(String newGroupLvl, String userEmail)
+    {
+        service.setGroupLvl(newGroupLvl, userEmail);
+        addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Grupa zmieniona poprawnie!", null));
+        return "success";
+    }
 	
 	
 }

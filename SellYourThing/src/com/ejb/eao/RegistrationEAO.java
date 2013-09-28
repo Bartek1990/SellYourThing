@@ -73,4 +73,13 @@ public class RegistrationEAO {
         }
         return false;
     }
+    public void setGroupLvl(String newGroupLvl, String userEmail)
+    {
+        GroupLvl changedGL = new GroupLvl();
+        User chUser = (User) entityManager.createQuery("SELECT c FROM User c WHERE c.email = :userEmail").setParameter("userEmail", userEmail).getSingleResult();
+        changedGL.setAccLevel((Integer) entityManager.createQuery("SELECT c FROM GroupLvl c WHERE c.name=:newGroupLvl").setParameter("newGroupLvl", newGroupLvl).getSingleResult());
+        changedGL.setName(newGroupLvl);
+        chUser.setGroupLvl(changedGL);
+        entityManager.persist(chUser);
+    }
 }
