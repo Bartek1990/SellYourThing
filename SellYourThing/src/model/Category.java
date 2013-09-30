@@ -22,7 +22,7 @@ public class Category implements Serializable {
 	private String name;
 
 	//bi-directional many-to-one association to Subcategory
-	@OneToMany(mappedBy="category")
+	@OneToMany(mappedBy="category", cascade = CascadeType.ALL)
 	private List<Subcategory> subcategories;
 
 	public Category() {

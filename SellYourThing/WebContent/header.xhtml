@@ -37,6 +37,10 @@
                 <ul>
                     <li><a href="/SellYourThing/index.xhtml">STRONA GŁÓWNA</a></li>
                     <li><a href="/SellYourThing/user/upload/auctionCreation.xhtml">WYSTAW AUKCJĘ</a></li>
+                    <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('Administrator')}">
+                        <li><a href="/SellYourThing/admin/addCategory.xhtml">DODAJ KATEGORIĘ</a></li>
+                        <li><a href="/SellYourThing/admin/allUsers.xhtml">SPIS UŻYTKOWNIKÓW</a></li>
+                    </h:panelGroup>
                 </ul>
             </nav>
         </ui:composition>

@@ -30,6 +30,18 @@
     .grid-container{
         margin-left: 15px;
     }
+    .auctionContainer .subcategoryName{
+        float: left;
+        margin-left: 20px;
+    }.singleAuction .description .price {
+        margin-top: 18px !important;
+    }
+    .singleAuction .end{
+        margin-top: 24px !important;
+    }
+.mainAddCat{
+    min-width: 0px !important;
+}
 }
 @media screen and (min-width: 767px){
     .singleAuction .image {
@@ -199,6 +211,14 @@ body {
 .auctionContainer{
     padding-top: 100px;
     height: 1000px;
+    text-align: center;
+}
+.auctionContainer .categories{
+    text-transform: uppercase;
+    color: #2d231c;
+    font-family: Open Sans Condensed;
+    font-weight: bold;
+    font-size: 20px;
 }
 .singleAuction{
     background-color: #f4f4f4;
@@ -277,6 +297,7 @@ body {
     margin-left: 10px;
     clear: left;
     float: left;
+    text-transform: uppercase;
 }
 .singleAuction .description .expDate{
     color: #555;
@@ -286,7 +307,7 @@ body {
     margin-right: 10px;
     float: right; 
 }
-.singleAuction .description .category .separator{
+.separator{
     color: #33b9f0;
 }
 
@@ -747,6 +768,7 @@ label{
     margin-top: 100px;
     float: left;
     margin-left: 15px;
+    text-transform: uppercase;
 }
 .categoriesHeader{
     background-color: #2d231c;
@@ -804,5 +826,96 @@ ul ul {
 }
 .categoriesContainer .menu ul li a:hover{
     color: #2d231c;
+}
+/*addCateogry*/
+.addCategoryContainer{
+    width: 550px;
+    height: 330px;
+    background-color: red;
+    text-align: center;
+    margin: auto;
+    font-family: Open Sans Condensed;
+    background-color: #f4f4f4;
+    color: #2d231c;
+    font-weight: bold;
+    margin-top: 50px;
+}
+.addCategoryContainer input{
+    float: left;
+    height: 33px;
+    margin-left: 15px;
+
+}
+.addCategoryContainer select{
+    float: left;
+    height: 40px;
+    margin-left: 15px;
+}
+.addCategoryContainer span{
+    float: left;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+.addCategoryContainer .subLabel{
+    clear: left;
+}
+.addCategoryContainer .catLabel{
+    margin-right: 21px;
+    margin-bottom: 50px;
+}
+.addCategoryHeader{
+    background-color: #2d231c;
+    height: 50px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.addCategoryHeader .header{
+    width: 300px;
+    background-color: #33b9f0;
+    float: left;
+    height: 40px;
+    padding-top: 10px;
+}
+.addCategoryContainer .buttonAdd{
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: url("#{resource['/img/add.png']}");
+    background-size: 40px 40px;
+    float: left;
+}
+.addCategoryContainer .buttonAdd:hover{
+    background: url("#{resource['/img/addhover.png']}");
+    background-size: 40px 40px;
+}
+.addCategoryContainer .buttonDelete{
+    margin-top: 5px;
+    display: block;
+    width: 30px;
+    height: 35px;
+    background: url("#{resource['/img/minus.png']}");
+    background-size: 28px 30px;
+    float: left;
+}
+.addCategoryContainer .buttonDelete:hover{
+    background: url("#{resource['/img/minushover.png']}");
+    background-size: 28px 30px;
+}
+.addCat{
+    margin-top: -330px;
+}
+.mainAddCat{
+    min-width: 1300px;
+}
+.addCategoryContainer .messages{
+    float: left;
+    clear: left;
+    margin-left: 150px;
+}
+.addCategoryContainer .category{
+    width: 150px;
+}
+.addCategoryContainer .newCategory{
+    width: 146px;
 }
 

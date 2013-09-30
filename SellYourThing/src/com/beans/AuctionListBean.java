@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -19,7 +21,7 @@ import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import model.Auction;
 
-@ViewScoped
+@RequestScoped
 @ManagedBean
 public class AuctionListBean {
 
@@ -28,6 +30,26 @@ public class AuctionListBean {
     private List<Auction> auctionList;
     @Resource
     UserTransaction ut;
+    @ManagedProperty(value = "#{param.subcategory}")
+    String subcategory;
+    @ManagedProperty(value = "#{param.category}")
+    String category;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getSubcategory() {
+        return subcategory;
+    }
+
+    public void setSubcategory(String subcategory) {
+        this.subcategory = subcategory;
+    }
 
     public List<Auction> getAuctionList() throws Exception {
         Query query = entityManager.createQuery("SELECT e FROM Auction e WHERE e.status=1");
@@ -44,7 +66,16 @@ public class AuctionListBean {
                 ut.commit();
             }
         }
-        Query newQuery = entityManager.createQuery("SELECT e FROM Auction e WHERE e.status=1");
+        Query newQuery;
+        if (category == null) {
+            newQuery = entityManager.createQuery("SELECT e FROM Auction e WHERE e.status=1");
+        } else if(subcategory == null){
+            newQuery = entityManager.createQuery("SELECT e FROM Auction e WHERE e.status=1 AND e.subcategory.category.name = :category");
+            newQuery.setParameter("category", category);
+        } else{
+            newQuery = entityManager.createQuery("SELECT e FROM Auction e WHERE e.status=1 AND e.subcategory.subName = :subcategory");
+            newQuery.setParameter("subcategory", subcategory);
+        }
         newQuery.setHint("javax.persistence.cache.storeMode", "REFRESH");
         auctionList = (List<Auction>) newQuery.getResultList();
         return auctionList;

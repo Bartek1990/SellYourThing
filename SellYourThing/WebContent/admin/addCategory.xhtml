@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="../style/main.css" />
+    </head>
+    <h:body styleClass="body">
+        <ui:composition template="/WEB-INF/template/mainLayout.xhtml">
+            <ui:define name="content">
+                <div class="mainAddCat">
+                    <div class="addCategoryContainer">
+                        <div class="addCategoryHeader">
+                            <div class="header">TWORZENIE I USUWANIE KATEGORII</div>
+                        </div>
+                        <h:form>
+                            <span class="catLabel">KATEGORIA</span>
+                            <h:inputText class="newCategory" id="newCategory" value="#{categoryBean.name}" pt:required="required" maxlength="50" validatorMessage="Zbyt długa nazwa">
+                                <f:validateLength maximum="50"/>
+                            </h:inputText>
+                            <h:commandLink class="buttonAdd" action="#{categoryBean.addCategory()}"/>
+                            <h:commandLink class="buttonDelete" action="#{categoryBean.deleteCategory()}"/>
+                        </h:form>
+                        <h:form>
+                            <span class="subLabel">SUBKATEGORIA</span>
+                            <h:selectOneMenu class="category" id="category" converter="#{categoryConverterBean}" value="#{subcategoryBean.category}">	
+                                <f:validator validatorId="categoryValidator"/>
+                                <f:selectItem itemLabel="Wybierz Kategorię" itemValue="#{auctionBean.category}"/>
+                                <f:selectItems 
+                                    value="#{categoryListBean.category}" 
+                                    var="category"
+                                    itemLabel="#{category.name}" 
+                                    itemValue="#{category}" 
+                                    />
+                            </h:selectOneMenu>
+                            <h:inputText class="subcategory" id="subcategory" value="#{subcategoryBean.subName}" pt:required="required" maxlength="50" validatorMessage="Zbyt długa nazwa">
+                                <f:validateLength maximum="50"/>
+                            </h:inputText>
+                            <h:commandLink class="buttonAdd" action="#{subcategoryBean.addSubcategory()}"/>
+                            <h:commandLink class="buttonDelete" action="#{subcategoryBean.deleteSubcategory()}"/>
+                        </h:form>
+                        <h:messages class="messages"/>
+                    </div>
+                </div>
+
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+                <script src="/SellYourThing/resources/js/categoryMenu.js"></script>
+                <h:panelGroup id="categoriesContainer" class="categoriesContainer addCat">
+                    <div class="categoriesHeader">
+                        <div class="header">PRZEGLĄDAJ KATEGORIE</div>
+                    </div>
+                    <div id="wrapper">
+                        <ul class="menu">
+                            <ui:repeat value="#{categoryListBean.category}" var="singleCategory">
+                                <li>
+                                    <a href="#">
+                                        <h:outputText value="#{singleCategory.name}"/>
+                                    </a>
+                                    <ul>
+                                        <ui:repeat value="#{singleCategory.subcategories}" var="singleSubCategory">
+                                            <li>
+                                                <h:link value="#{singleSubCategory.subName}" outcome="index">
+                                                    <f:param name="subcategory" value="#{singleSubCategory.subName}" />
+                                                    <f:param name="category" value="#{singleCategory.name}" />
+                                                </h:link>
+                                            </li>
+                                        </ui:repeat>
+                                    </ul>
+                                </li>
+
+                            </ui:repeat>
+                        </ul>
+                    </div>
+                </h:panelGroup>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
