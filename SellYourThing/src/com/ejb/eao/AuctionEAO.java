@@ -7,25 +7,14 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionManagement;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.UserTransaction;
 
 import model.Auction;
 import model.Biding;
-import model.Subcategory;
 import model.ProductImage;
-import java.io.File;
-import java.io.FileInputStream;
 
-import javax.annotation.Resource;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import model.User;
 
 @Stateful
@@ -88,7 +77,7 @@ public class AuctionEAO {
                 productImages.add(prodIm);
             }
             auction.setProductImages(productImages);
-            System.out.println("PRESIST: " + auction.getTitle());
+
             entityManager.persist(auction);
             return true;
         } catch (ClassCastException e) {
@@ -102,5 +91,18 @@ public class AuctionEAO {
             e.printStackTrace();
         }
         return false;
+    }
+    //Nie ma wielkiej walidacji
+    public boolean persistChangedAuction(AuctionBean auctionBean)
+    {
+        Auction aucToChange = (Auction) entityManager.createQuery("SELECT c FROM Auction c WHERE c.title=:aTitle").setParameter("aTitle", auctionBean.getTitle()).setMaxResults(1).getSingleResult();
+        if(auctionBean.getTitle() != null || auctionBean.getTitle() != "")
+        {
+            aucToChange.setTitle(auctionBean.getTitle());
+        } else if(auctionBean.getDescription() != null || auctionBean.getDescription()!= "")
+        {
+            aucToChange.setDescription(auctionBean.getDescription());
+        }
+        return true;
     }
 }
