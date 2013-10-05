@@ -38,6 +38,7 @@ public class RegistrationEAO {
             user.setEmail(registrationBean.getEmail());
             user.setDateOfBirth(registrationBean.getDob());
             user.setRegisterDate(new java.util.Date());
+            user.setBanned(0);
 
             Address address = new Address();
             address.setStreet(registrationBean.getStreet());

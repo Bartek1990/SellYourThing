@@ -39,9 +39,9 @@
     .singleAuction .end{
         margin-top: 24px !important;
     }
-.mainAddCat{
-    min-width: 0px !important;
-}
+    .mainAddCat{
+        min-width: 0px !important;
+    }
 }
 @media screen and (min-width: 767px){
     .singleAuction .image {
@@ -920,8 +920,8 @@ ul ul {
 }
 /*USERS*/
 .usersContainer{
-    width: 550px;
-    height: 330px;
+    width: 750px;
+    height: 200px;
     background-color: red;
     text-align: center;
     margin: auto;
@@ -943,4 +943,33 @@ ul ul {
     float: left;
     height: 40px;
     padding-top: 10px;
+}
+.usersContainer .users{
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: left;
+    margin-left: 50px;
+}
+.usersContainer input{
+    font-family: Open Sans Condensed;
+    background-color: #2d231c;
+    -moz-transition: all 0.1s linear;
+    -webkit-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+    color: #fff;
+    border: none;
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 15px;
+    float: left;
+}
+.usersContainer input:hover{
+    color: #33b9f0;
+}
+.usersContainer .admin{
+    width: 190px;
 }

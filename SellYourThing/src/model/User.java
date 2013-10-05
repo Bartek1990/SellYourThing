@@ -6,154 +6,151 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-
 /**
  * The persistent class for the user database table.
- * 
+ *
  */
 @Entity
 public class User implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="user_id")
-	private int userId;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private int userId;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "date_of_birth")
+    private Date dateOfBirth;
+    private String email;
+    private String forname;
+    private String name;
+    private String password;
+    private String pesel;
+    private int banned;
 
-	@Temporal(TemporalType.DATE)
-	@Column(name="date_of_birth")
-	private Date dateOfBirth;
+    public int getBanned() {
+        return banned;
+    }
 
-	private String email;
+    public void setBanned(int banned) {
+        this.banned = banned;
+    }
+    @Temporal(TemporalType.DATE)
+    @Column(name = "register_date")
+    private Date registerDate;
+    //bi-directional many-to-many association to Auction
+    @ManyToMany(mappedBy = "users", cascade = {CascadeType.ALL})
+    private List<Auction> auctions;
+    //bi-directional many-to-one association to Biding
+    @OneToMany(mappedBy = "user")
+    private List<Biding> bidings;
+    //bi-directional many-to-one association to Address
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "Addressaddress_id")
+    private Address address;
+    //bi-directional many-to-one association to GroupLvl
+    @ManyToOne
+    @JoinColumn(name = "Groupgroup_id")
+    private GroupLvl groupLvl;
 
-	private String forname;
+    public User() {
+    }
 
-	private String name;
+    public int getUserId() {
+        return this.userId;
+    }
 
-	private String password;
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
-	private String pesel;
+    public Date getDateOfBirth() {
+        return this.dateOfBirth;
+    }
 
-	@Temporal(TemporalType.DATE)
-	@Column(name="register_date")
-	private Date registerDate;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
-	//bi-directional many-to-many association to Auction
-	@ManyToMany(mappedBy="users", cascade={CascadeType.ALL})
-	private List<Auction> auctions;
+    public String getEmail() {
+        return this.email;
+    }
 
-	//bi-directional many-to-one association to Biding
-	@OneToMany(mappedBy="user")
-	private List<Biding> bidings;
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	//bi-directional many-to-one association to Address
-	@ManyToOne(cascade={CascadeType.ALL})
-	@JoinColumn(name="Addressaddress_id")
-	private Address address;
+    public String getForname() {
+        return this.forname;
+    }
 
-	//bi-directional many-to-one association to GroupLvl
-	@ManyToOne
-	@JoinColumn(name="Groupgroup_id")
-	private GroupLvl groupLvl;
+    public void setForname(String forname) {
+        this.forname = forname;
+    }
 
-	public User() {
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public int getUserId() {
-		return this.userId;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+    public String getPassword() {
+        return this.password;
+    }
 
-	public Date getDateOfBirth() {
-		return this.dateOfBirth;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
+    public String getPesel() {
+        return this.pesel;
+    }
 
-	public String getEmail() {
-		return this.email;
-	}
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public Date getRegisterDate() {
+        return this.registerDate;
+    }
 
-	public String getForname() {
-		return this.forname;
-	}
+    public void setRegisterDate(Date registerDate) {
+        this.registerDate = registerDate;
+    }
 
-	public void setForname(String forname) {
-		this.forname = forname;
-	}
+    public List<Auction> getAuctions() {
+        return this.auctions;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    public void setAuctions(List<Auction> auctions) {
+        this.auctions = auctions;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public List<Biding> getBidings() {
+        return this.bidings;
+    }
 
-	public String getPassword() {
-		return this.password;
-	}
+    public void setBidings(List<Biding> bidings) {
+        this.bidings = bidings;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public Address getAddress() {
+        return this.address;
+    }
 
-	public String getPesel() {
-		return this.pesel;
-	}
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
-	public void setPesel(String pesel) {
-		this.pesel = pesel;
-	}
+    public GroupLvl getGroupLvl() {
+        return this.groupLvl;
+    }
 
-	public Date getRegisterDate() {
-		return this.registerDate;
-	}
-
-	public void setRegisterDate(Date registerDate) {
-		this.registerDate = registerDate;
-	}
-
-	public List<Auction> getAuctions() {
-		return this.auctions;
-	}
-
-	public void setAuctions(List<Auction> auctions) {
-		this.auctions = auctions;
-	}
-
-	public List<Biding> getBidings() {
-		return this.bidings;
-	}
-
-	public void setBidings(List<Biding> bidings) {
-		this.bidings = bidings;
-	}
-
-	public Address getAddress() {
-		return this.address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-	public GroupLvl getGroupLvl() {
-		return this.groupLvl;
-	}
-
-	public void setGroupLvl(GroupLvl groupLvl) {
-		this.groupLvl = groupLvl;
-	}
+    public void setGroupLvl(GroupLvl groupLvl) {
+        this.groupLvl = groupLvl;
+    }
 
     @Override
     public int hashCode() {
@@ -176,5 +173,4 @@ public class User implements Serializable {
         }
         return true;
     }
-
 }

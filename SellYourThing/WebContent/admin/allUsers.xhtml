@@ -18,7 +18,7 @@
                         <div class="header">ZARZĄDZANIE UŻYTKOWNIKAMI</div>
                     </div>
                     <h:form>
-                        <h:selectOneMenu converter="#{userConverterBean}" value="#{usersBean.user}">	
+                        <h:selectOneMenu class ="users" converter="#{userConverterBean}" value="#{usersBean.user}">	
                             <f:selectItems 
                                 value="#{usersBean.users}" 
                                 var="user"
@@ -26,8 +26,10 @@
                                 itemValue="#{user}" 
                                 />
                         </h:selectOneMenu>
-                        <h:commandButton value="USUŃ UŻYTKOWNIKA" action="#{usersBean.deleteUser}" type="submit"/>
-                        <h:commandButton value="NADAJ PRAWA ADMINA" action="#{usersBean.deleteUser()}"/>
+                        <h:commandButton value="ZBANUJ" action="#{usersBean.banUser()}" type="submit"/>
+                        <h:commandButton value="ODBANUJ" action="#{usersBean.unbanUser()}" type="submit"/>
+                        <h:commandButton value="NADAJ PRAWA ADMINA" class="admin" type="submit" action="#{usersBean.setAdmin()}"/>
+                        <h:messages class="messages"/>
                     </h:form>
                 </div>
             </ui:define>
