@@ -29,15 +29,16 @@ public class UserConverter implements Converter {
         Query query = em.createQuery("SELECT c FROM User c WHERE c.email=:email");
         System.out.println("wartosc: " + value);
         query.setParameter("email", value);
+        User user = (User) query.getSingleResult();
+        System.out.println("zwracam: " + user.getEmail());
         return query.getSingleResult();
-
     }
 
     @Override
     public String getAsString(FacesContext arg0, UIComponent arg1, Object value) {
         // TODO Auto-generated method stub
-        if (((String) ((User) value).getName()) != null) {
-            return (String) ((User) value).getName();
+        if (((String) ((User) value).getEmail()) != null) {
+            return (String) ((User) value).getEmail();
         } else {
             return "";
         }

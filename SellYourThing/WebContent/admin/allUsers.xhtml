@@ -18,15 +18,15 @@
                         <div class="header">ZARZĄDZANIE UŻYTKOWNIKAMI</div>
                     </div>
                     <h:form>
-                        <h:selectOneMenu value="#{usersBean}">	
+                        <h:selectOneMenu converter="#{userConverterBean}" value="#{usersBean.user}">	
                             <f:selectItems 
                                 value="#{usersBean.users}" 
                                 var="user"
                                 itemLabel="#{user.email}" 
-                                itemValue="#{user.email}" 
+                                itemValue="#{user}" 
                                 />
                         </h:selectOneMenu>
-                        <h:commandButton value="USUŃ UŻYTKOWNIKA" action="#{usersBean.deleteUser()}"/>
+                        <h:commandButton value="USUŃ UŻYTKOWNIKA" action="#{usersBean.deleteUser}" type="submit"/>
                         <h:commandButton value="NADAJ PRAWA ADMINA" action="#{usersBean.deleteUser()}"/>
                     </h:form>
                 </div>

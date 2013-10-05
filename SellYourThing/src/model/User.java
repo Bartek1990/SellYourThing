@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -153,5 +154,27 @@ public class User implements Serializable {
 	public void setGroupLvl(GroupLvl groupLvl) {
 		this.groupLvl = groupLvl;
 	}
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 43 * hash + Objects.hashCode(this.email);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        return true;
+    }
 
 }

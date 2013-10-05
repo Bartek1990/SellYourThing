@@ -3,6 +3,7 @@ package com.beans;
 import com.ejb.eao.CategoryEAO;
 import com.ejb.eao.UserEAO;
 import java.util.List;
+import java.util.Objects;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -46,6 +47,8 @@ public class UsersBean {
     }
     public void deleteUser()
     {
+        System.out.println("jestem");
         service.deleteUser(this);
     }
+    
 }
