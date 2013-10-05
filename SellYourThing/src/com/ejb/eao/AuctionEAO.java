@@ -31,8 +31,15 @@ public class AuctionEAO {
         Query query = entityManager.createQuery("SELECT e FROM Auction e");
         return query.getResultList();
     }
-
+    public boolean deleteAuction(Auction auction){
+        Query query = entityManager.createQuery("SELECT e FROM Auction e WHERE e.auctionId=:id").setParameter("id", auction.getAuctionId());
+        Auction a = (Auction)query.getSingleResult();
+        a.setStatus("0");
+        entityManager.merge(a);
+        return true;
+    }
     public User getUserByEmail(String email) {
+        System.out.println("dasdasdasdas " + email);
         return (User) entityManager.createQuery(
                 "SELECT e FROM User e WHERE e.email=:emailVal")
                 .setParameter("emailVal", email)

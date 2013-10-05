@@ -53,7 +53,7 @@ public class Auction implements Serializable {
 	private List<User> users;
 
 	//bi-directional many-to-one association to Biding
-	@OneToMany(mappedBy="auction", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy="auction", cascade = CascadeType.ALL)
 	private List<Biding> bidings;
         public double getHigherBid()
         {
@@ -66,15 +66,15 @@ public class Auction implements Serializable {
                     return higherBid;
         }
 	//bi-directional many-to-one association to Comment
-	@OneToMany(mappedBy="auction")
+	@OneToMany(mappedBy="auction", cascade = CascadeType.ALL)
 	private List<Comment> comments;
 
 	//bi-directional many-to-one association to Grade
-	@OneToMany(mappedBy="auction")
+	@OneToMany(mappedBy="auction", cascade = CascadeType.ALL)
 	private List<Grade> grades;
 
 	//bi-directional many-to-one association to ProductImage
-	@OneToMany(mappedBy="auction", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy="auction", cascade = CascadeType.ALL)
 	private List<ProductImage> productImages;
         public String getFirstImageUrl(){
             if(!productImages.isEmpty() && productImages != null)

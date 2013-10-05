@@ -75,7 +75,10 @@ public class AuctionDetailsBean {
         auctionId = auction.getAuctionId();
         return "auctionDetails";
     }
-
+    public String deleteAuction(Auction auction){
+        service.deleteAuction(auction);
+        return "deleted";
+    }
     public String getTitle() {
         return title;
     }

@@ -51,8 +51,10 @@
                     </h:panelGroup>
                     <ui:repeat var="singleAuction" value="#{auctionListBean.auctionList}"  varStatus="status">
                         <h:form>
-                            <h:commandLink action="#{auctionDetailsBean.details(singleAuction)}">
-                                <div class="grid-25 mobile-grid-100">
+
+                            <div class="grid-25 mobile-grid-100">
+                                <h:commandLink rendered="#{facesContext.externalContext.isUserInRole('Administrator')}" action="#{auctionDetailsBean.deleteAuction(singleAuction)}"><h:panelGroup class="delete"/></h:commandLink>
+                                <h:commandLink action="#{auctionDetailsBean.details(singleAuction)}">
                                     <section class="singleAuction">
                                         <figure class="image">
                                             <h:graphicImage value="/image/#{singleAuction.getFirstImageUrl()}"/>
@@ -75,8 +77,9 @@
                                             </span>
                                         </div>
                                     </section>
-                                </div>
-                            </h:commandLink>
+                                </h:commandLink>
+                            </div>
+
 
                         </h:form>
                     </ui:repeat>		  
