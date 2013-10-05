@@ -53,11 +53,7 @@ public class RegistrationEAO {
             users.add(user);
             address.setUsers(users);
 
-            //WyciÄ…gam dane na temat grup z bazy
-            String groupname = "Administrator";
-
-            Query query = this.entityManager.createQuery("SELECT c FROM GroupLvl c WHERE c.name=?1");
-            query.setParameter("1", groupname);
+            Query query = this.entityManager.createQuery("SELECT c FROM GroupLvl c WHERE c.accLevel=1");
             user.setGroupLvl((GroupLvl) query.getSingleResult());
 
             entityManager.persist(user);
