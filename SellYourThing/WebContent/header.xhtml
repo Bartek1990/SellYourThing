@@ -41,6 +41,11 @@
                         <li><a href="/SellYourThing/admin/addCategory.xhtml">DODAJ KATEGORIĘ</a></li>
                         <li><a href="/SellYourThing/admin/allUsers.xhtml">SPIS UŻYTKOWNIKÓW</a></li>
                     </h:panelGroup>
+                    <h:panelGroup rendered="#{facesContext.externalContext.isUserInRole('Administrator') or facesContext.externalContext.isUserInRole('User')}">
+                        <li><a href="/SellYourThing/user/auctionSold.xhtml">SPRZEDANE</a></li>
+                        <li><a href="/SellYourThing/user/auctionWon.xhtml">KUPIONE</a></li>
+                        <li><a href="/SellYourThing/user/auctionInProgress.xhtml">AUKCJE W TOKU</a></li>
+                    </h:panelGroup>
                 </ul>
             </nav>
         </ui:composition>

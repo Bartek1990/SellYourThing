@@ -994,3 +994,87 @@ ul ul {
 .usersContainer .admin{
     width: 190px;
 }
+/*AUCTION IN PROGRESS */
+.auctionInProgressContainer{
+    width: 750px;
+    height: 200px;
+    text-align: center;
+    margin: auto;
+    font-family: Open Sans Condensed;
+    background-color: #f4f4f4;
+    color: #2d231c;
+    font-weight: bold;
+    margin-top: 50px;
+}
+.auctionInProgressHeader{
+    background-color: #2d231c;
+    height: 50px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.auctionInProgressHeader .header{
+    width: 300px;
+    background-color: #33b9f0;
+    float: left;
+    height: 40px;
+    padding-top: 10px;
+}
+.auctionInProgressContainer .auctions{
+    color: black;
+}
+/*AUCTION WON */
+.auctionWonContainer{
+    width: 750px;
+    height: 200px;
+    text-align: center;
+    margin: auto;
+    font-family: Open Sans Condensed;
+    background-color: #f4f4f4;
+    color: #2d231c;
+    font-weight: bold;
+    margin-top: 50px;
+}
+.auctionWonHeader{
+    background-color: #2d231c;
+    height: 50px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.auctionWonHeader .header{
+    width: 300px;
+    background-color: #33b9f0;
+    float: left;
+    height: 40px;
+    padding-top: 10px;
+}
+.auctionWonContainer .auctions{
+    color: black;
+}
+/*AUCTION SOLD */
+.auctionSoldContainer{
+    width: 750px;
+    height: 200px;
+    text-align: center;
+    margin: auto;
+    font-family: Open Sans Condensed;
+    background-color: #f4f4f4;
+    color: #2d231c;
+    font-weight: bold;
+    margin-top: 50px;
+}
+.auctionSoldHeader{
+    background-color: #2d231c;
+    height: 50px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.auctionSoldHeader .header{
+    width: 300px;
+    background-color: #33b9f0;
+    float: left;
+    height: 40px;
+    padding-top: 10px;
+}
+.auctionSoldContainer .auctions{
+    color: black;
+}
