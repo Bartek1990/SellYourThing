@@ -918,4 +918,29 @@ ul ul {
 .addCategoryContainer .newCategory{
     width: 146px;
 }
-
+/*USERS*/
+.usersContainer{
+    width: 550px;
+    height: 330px;
+    background-color: red;
+    text-align: center;
+    margin: auto;
+    font-family: Open Sans Condensed;
+    background-color: #f4f4f4;
+    color: #2d231c;
+    font-weight: bold;
+    margin-top: 50px;
+}
+.usersHeader{
+    background-color: #2d231c;
+    height: 50px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.usersHeader .header{
+    width: 300px;
+    background-color: #33b9f0;
+    float: left;
+    height: 40px;
+    padding-top: 10px;
+}

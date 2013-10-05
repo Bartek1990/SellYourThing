@@ -1,22 +1,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
- 
+
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
- 
-<head>
-<link rel="stylesheet" type="text/css" href="../style/main.css" />
-</head>
-<h:body styleClass="body">
-    <h:outputText value="Witam Administratora!!!" styleClass="header"></h:outputText>
-    
-    <h:messages></h:messages>
-    <h:link value="Dodaj aukcję" outcome="auctionCre"></h:link>
-    
-    <h:form>
-        <h:commandLink value="Logout" action="#{loginBean.logout}"></h:commandLink>
-    </h:form>
-</h:body>
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="../style/main.css" />
+    </head>
+    <h:body styleClass="body">
+        <ui:composition template="/WEB-INF/template/mainLayout.xhtml">
+            <ui:define name="content">
+                <div class="usersContainer">
+                    <div class="usersHeader">
+                        <div class="header">ZARZĄDZANIE UŻYTKOWNIKAMI</div>
+                    </div>
+                    <h:form>
+                        <h:selectOneMenu value="#{usersBean}">	
+                            <f:selectItems 
+                                value="#{usersBean.users}" 
+                                var="user"
+                                itemLabel="#{user.email}" 
+                                itemValue="#{user.email}" 
+                                />
+                        </h:selectOneMenu>
+                        <h:commandButton value="USUŃ UŻYTKOWNIKA" action="#{usersBean.deleteUser()}"/>
+                        <h:commandButton value="NADAJ PRAWA ADMINA" action="#{usersBean.deleteUser()}"/>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>
