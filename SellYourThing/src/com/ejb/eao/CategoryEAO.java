@@ -44,18 +44,20 @@ public class CategoryEAO {
         }
     }
 
-    public boolean persistSubCategory(SubcategoryBean subcategoryBean) {
+    public String persistSubCategory(SubcategoryBean subcategoryBean) {
         Query query = entityManager.createQuery("SELECT e FROM Subcategory e WHERE e.subName =:subName AND e.category.catId =:categoryId");
         query.setParameter("subName", subcategoryBean.getSubName());
         query.setParameter("categoryId", subcategoryBean.getCategory().getCatId());
         if (!query.getResultList().isEmpty()) {
-            return false;
+            return "exists";
         }
+        if(subcategoryBean.getSubName().isEmpty() || subcategoryBean.getSubName() == null)
+            return "empty";
         Subcategory sub = new Subcategory();
         sub.setCategory(subcategoryBean.getCategory());
         sub.setSubName(subcategoryBean.getSubName());
         entityManager.persist(sub);
-        return true;
+        return "success";
     }
 
     public boolean deleteSubCategory(SubcategoryBean subcategoryBean) {
@@ -70,16 +72,18 @@ public class CategoryEAO {
         return true;
     }
 
-    public boolean persistCategory(CategoryBean categoryBean) {
+    public String persistCategory(CategoryBean categoryBean) {
         Query query = entityManager.createQuery("SELECT e FROM Category e WHERE e.name =:name");
         query.setParameter("name", categoryBean.getName());
         if (!query.getResultList().isEmpty()) {
-            return false;
+            return "exists";
         }
+        if(categoryBean.getName().isEmpty() || categoryBean.getName() == null)
+            return "empty";
         Category cat = new Category();
         cat.setName(categoryBean.getName());
         entityManager.persist(cat);
-        return true;
+        return "success";
     }
 
     public boolean deleteCategory(CategoryBean categoryBean) {

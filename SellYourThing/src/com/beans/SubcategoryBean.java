@@ -6,6 +6,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.persistence.EntityExistsException;
+import javax.persistence.PersistenceException;
 import model.Category;
 
 @ManagedBean
@@ -34,16 +36,26 @@ public class SubcategoryBean {
     }
 
     public String addSubcategory() {
-        if (!service.persistSubCategory(this)) {
+        if (service.persistSubCategory(this).equals("exists")) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Subkategoria " + category.getName() + " > " + subName + " już istnieje", null));
+            return "failure";
+        }
+        if (service.persistSubCategory(this).equals("empty")) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Podaj nazwę subkategorii", null));
             return "failure";
         }
         return "success";
     }
 
     public String deleteSubcategory() {
-        if (!service.deleteSubCategory(this)) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Subkategoria " + category.getName() + " > " + subName + " nie istnieje", null));
+        try {
+            if (!service.deleteSubCategory(this)) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Subkategoria " + category.getName() + " > " + subName + " nie istnieje", null));
+                return "failure";
+            }
+        }
+        catch(Exception ex){ //sprecyzowac wyjatek
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Nie można usunąć - są aukcje korzystające z podanej subkategorii", null));
             return "failure";
         }
         return "success";

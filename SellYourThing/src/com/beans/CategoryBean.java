@@ -33,16 +33,26 @@ public class CategoryBean {
     }
 
     public String addCategory() {
-        if (!service.persistCategory(this)) {
+        if (service.persistCategory(this).equals("exists")) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Kategoria " + name + " już istnieje", null));
             return "failure";
         }
+        if (service.persistCategory(this).equals("empty")) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Podaj nazwę kategorii", null));
+            return "failure";
+        }
+
         return "success";
     }
 
     public String deleteCategory() {
-        if (!service.deleteCategory(this)) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Kategoria " + name + " nie istnieje", null));
+        try {
+            if (!service.deleteCategory(this)) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Kategoria " + name + " nie istnieje", null));
+                return "failure";
+            }
+        } catch (Exception ex) { //sprecyzowac wyjatek
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Nie można usunąć - są aukcje korzystające z podanej kategorii", null));
             return "failure";
         }
         return "success";
