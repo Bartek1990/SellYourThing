@@ -996,7 +996,9 @@ ul ul {
 }
 .usersContainer .admin{
     width: 190px;
+    margin-right: 50px;
 }
+
 /*AUCTION IN PROGRESS */
 .auctionInProgressContainer{
     width: 750px;

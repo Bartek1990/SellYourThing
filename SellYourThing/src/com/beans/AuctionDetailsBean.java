@@ -34,11 +34,47 @@ public class AuctionDetailsBean {
     private String message = "";
     private Date timeLeft;
     private int auctionId;
+    private boolean finished = false;
+
+    public boolean isFinished() {
+        if (expDate.compareTo(new Date()) < 0) {
+            finished = true;
+        } else {
+            finished = false;
+        }
+        return finished;
+    }
+
+    public void setFinished(boolean active) {
+        this.finished = active;
+    }
     @EJB
     AuctionEAO service;
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean userBean;
     private boolean renderDay;
+    private boolean renderSecond;
+
+    public boolean isRenderSecond() {
+        Calendar today = Calendar.getInstance();
+        today.setTime(new Date());
+        today.add(Calendar.DAY_OF_WEEK, 1);
+        long left = expDate.getTime() - today.getTime().getTime();
+        Calendar monthCheck = Calendar.getInstance();
+        monthCheck.setTimeInMillis(left);
+        if (monthCheck.get(Calendar.MINUTE) < 1) {
+            if (monthCheck.get(Calendar.MINUTE) < 1) {
+                return true;
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+    public void setRenderSecond(boolean renderSecond) {
+        this.renderSecond = renderSecond;
+    }
 
     public boolean isRenderDay() {
         Calendar today = Calendar.getInstance();
@@ -47,10 +83,11 @@ public class AuctionDetailsBean {
         long left = expDate.getTime() - today.getTime().getTime();
         Calendar monthCheck = Calendar.getInstance();
         monthCheck.setTimeInMillis(left);
-        if(monthCheck.get(Calendar.DAY_OF_MONTH) >= 30){
+        if (monthCheck.get(Calendar.DAY_OF_MONTH) >= 30) {
             return false;
+        } else {
+            return true;
         }
-        else return true;
     }
 
     public void setRenderDay(boolean renderDay) {
@@ -93,10 +130,12 @@ public class AuctionDetailsBean {
         auctionId = auction.getAuctionId();
         return "auctionDetails";
     }
-    public String deleteAuction(Auction auction){
+
+    public String deleteAuction(Auction auction) {
         service.deleteAuction(auction);
         return "deleted";
     }
+
     public String getTitle() {
         return title;
     }

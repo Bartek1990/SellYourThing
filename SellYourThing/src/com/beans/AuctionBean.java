@@ -208,8 +208,8 @@ public class AuctionBean {
     }
 
     public enum Days {
-
-        IN_1_DAY("2 dni", 2),
+        IN_2_MIN("2 minuty (TEST)", 0),
+        IN_1_DAY("1 dzień", 1),
         IN_4_DAYS("4 dni", 4),
         IN_7_DAYS("7 dni", 7),
         IN_14_DAYS("14 dni", 14);
@@ -227,7 +227,10 @@ public class AuctionBean {
         public Date calculateExpDate() {
             Calendar cal = Calendar.getInstance();
             cal.setTime(new Date());
-            cal.add(Calendar.DATE, this.days);
+            if(this.days == 0)
+                cal.add(Calendar.MINUTE, 2);
+            else
+                cal.add(Calendar.DATE, this.days);
             return cal.getTime();
         }
     }
