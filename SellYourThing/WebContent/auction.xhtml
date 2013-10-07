@@ -30,7 +30,7 @@
                         </h:outputLabel> 
                         <span>ZŁ</span>
                     </div>
-                    <span class="timeLeft" id="timeLeft">
+                    <h:panelGroup rendered="#{!auctionDetailsBean.finished}" class="timeLeft" id="timeLeft">
                         <span>DO KOŃCA: </span>
                         <h:outputLabel rendered="#{auctionDetailsBean.renderDay}" value="#{auctionDetailsBean.timeLeft}">
                             <f:convertDateTime pattern="dd"/> dni i
@@ -38,7 +38,14 @@
                         <h:outputLabel value="#{auctionDetailsBean.timeLeft}">
                             <f:convertDateTime pattern="HH:mm"/>
                         </h:outputLabel>
-                    </span>
+                        <h:outputLabel rendered="#{auctionDetailsBean.renderSecond}" style="color: red" value=":"/>
+                        <h:outputLabel rendered="#{auctionDetailsBean.renderSecond}" style="color: red" value="#{auctionDetailsBean.timeLeft}">
+                            <f:convertDateTime pattern="ss"/>
+                        </h:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{auctionDetailsBean.finished}" class="timeLeft">
+                        <h:outputLabel style="color: red" value="ZAKOŃCZONA"/>
+                    </h:panelGroup>
                     <h:form class="bidding">
                         <h:commandButton class="submit" value="LICYTUJ"/>
                         <h:inputText class="price" value="#{auctionDetailsBean.price}" validatorMessage="Nie możesz licytować za więcej niż 1,000,000zł">
