@@ -9,6 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name = "grade")
 public class Grade implements Serializable {
 	private static final long serialVersionUID = 1L;
 

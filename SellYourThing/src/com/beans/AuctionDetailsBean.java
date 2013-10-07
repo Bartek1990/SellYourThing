@@ -38,6 +38,24 @@ public class AuctionDetailsBean {
     AuctionEAO service;
     @ManagedProperty(value = "#{loginBean}")
     private LoginBean userBean;
+    private boolean renderDay;
+
+    public boolean isRenderDay() {
+        Calendar today = Calendar.getInstance();
+        today.setTime(new Date());
+        today.add(Calendar.DAY_OF_WEEK, 1);
+        long left = expDate.getTime() - today.getTime().getTime();
+        Calendar monthCheck = Calendar.getInstance();
+        monthCheck.setTimeInMillis(left);
+        if(monthCheck.get(Calendar.DAY_OF_MONTH) >= 30){
+            return false;
+        }
+        else return true;
+    }
+
+    public void setRenderDay(boolean renderDay) {
+        this.renderDay = renderDay;
+    }
 
     public LoginBean getUserBean() {
         return userBean;

@@ -184,7 +184,7 @@ public class AuctionBean {
     public void setImage(Part image) {
         this.imagesList.add(image);
         String url = generateFilename(image);
-        Path path = Paths.get("C:/images/" + url);
+        Path path = Paths.get("/images/" + url);
         try {
             Files.copy(image.getInputStream(), path, REPLACE_EXISTING);
         } catch (IOException ex) {
@@ -209,7 +209,7 @@ public class AuctionBean {
 
     public enum Days {
 
-        IN_1_DAY("1 dzień", 1),
+        IN_1_DAY("2 dni", 2),
         IN_4_DAYS("4 dni", 4),
         IN_7_DAYS("7 dni", 7),
         IN_14_DAYS("14 dni", 14);

@@ -14,6 +14,7 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name = "auction")
 public class Auction implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -80,7 +81,7 @@ public class Auction implements Serializable {
             if(!productImages.isEmpty() && productImages != null)
             {
                  ProductImage oneImage = productImages.get(0);
-                 File f = new File("C:/images/"+oneImage.getUrl());
+                 File f = new File("/images/"+oneImage.getUrl());
                  if(f.exists()) return oneImage.getUrl();
                  else return "no_image.jpg";
             }

@@ -32,7 +32,7 @@
                     </div>
                     <span class="timeLeft" id="timeLeft">
                         <span>DO KOŃCA: </span>
-                        <h:outputLabel value="#{auctionDetailsBean.timeLeft}">
+                        <h:outputLabel rendered="#{auctionDetailsBean.renderDay}" value="#{auctionDetailsBean.timeLeft}">
                             <f:convertDateTime pattern="dd"/> dni i
                         </h:outputLabel>
                         <h:outputLabel value="#{auctionDetailsBean.timeLeft}">

@@ -42,6 +42,9 @@
     .mainAddCat{
         min-width: 0px !important;
     }
+    .delete{
+        margin-left: 280px !important;
+    }
 }
 @media screen and (min-width: 767px){
     .singleAuction .image {
@@ -171,7 +174,7 @@ body {
     font-family: Open Sans Condensed;
     width: auto;
     background-color: #f4f4f4;
-    min-width: 700px;
+    min-width: 1000px;
 }
 .topMenu ul {
     margin: 0;
