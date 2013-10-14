@@ -40,7 +40,7 @@ public class User implements Serializable {
     @Column(name = "register_date")
     private Date registerDate;
     //bi-directional many-to-many association to Auction
-    @ManyToMany(mappedBy = "users", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
     private List<Auction> auctions;
     //bi-directional many-to-one association to Biding
     @OneToMany(mappedBy = "user")

@@ -1002,7 +1002,7 @@ ul ul {
 /*AUCTION IN PROGRESS */
 .auctionInProgressContainer{
     width: 750px;
-    height: 200px;
+    height: 400px;
     text-align: center;
     margin: auto;
     font-family: Open Sans Condensed;
@@ -1024,9 +1024,7 @@ ul ul {
     height: 40px;
     padding-top: 10px;
 }
-.auctionInProgressContainer .auctions{
-    color: black;
-}
+
 /*AUCTION WON */
 .auctionWonContainer{
     width: 750px;
@@ -1083,3 +1081,4 @@ ul ul {
 .auctionSoldContainer .auctions{
     color: black;
 }
+

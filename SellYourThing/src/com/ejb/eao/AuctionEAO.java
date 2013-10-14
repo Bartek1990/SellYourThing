@@ -66,6 +66,7 @@ public class AuctionEAO {
             auction.setType(auctionBean.getType());
             auction.setExpDate(auctionBean.getExpDate());
             auction.setStatus(auctionBean.getStatus());
+            auction.setUser(this.getUserByEmail(auctionBean.getUserBean().getEmail()));
             List<Biding> bidings = new ArrayList<Biding>();
             Biding newBid = new Biding();
             newBid.setAuction(auction);
@@ -111,5 +112,23 @@ public class AuctionEAO {
             aucToChange.setDescription(auctionBean.getDescription());
         }
         return true;
+    }
+    public List<Auction> getMyAuctions(String username)
+    {
+        Query query = entityManager.createQuery("SELECT e FROM Auction e WHERE e.user.email=:emailVal AND e.status = '0'");
+        query.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return query.setParameter("emailVal", username).getResultList();
+    }
+    public List<Auction> getWonAuctions(String username)
+    {
+        Query query = entityManager.createQuery("SELECT DISTINCT e.auction FROM Biding e WHERE e.user.email=:emailVal AND e.auction.status='0' AND e.auction.user.email <> :emailVal");
+        query.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return query.setParameter("emailVal", username).getResultList();
+    }
+    public List<Auction> getActAuctions(String username)
+    {
+        Query query = entityManager.createQuery("SELECT DISTINCT e.auction FROM Biding e WHERE e.user.email=:emailVal AND e.auction.user.email <> :emailVal AND e.auction.status='1'");
+        query.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return query.setParameter("emailVal", username).getResultList();
     }
 }

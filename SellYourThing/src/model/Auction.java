@@ -41,18 +41,9 @@ public class Auction implements Serializable {
 	@JoinColumn(name="Subcategoriessub_id")
 	private Subcategory subcategory;
 
-	//bi-directional many-to-many association to User
-	@ManyToMany(cascade={CascadeType.ALL})
-	@JoinTable(
-		name="auction_user"
-		, joinColumns={
-			@JoinColumn(name="Auctionauction_id")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="Useruser_id")
-			}
-		)
-	private List<User> users;
+    @ManyToOne
+    @JoinColumn(name="owner_id")
+	private User user;
 
 	//bi-directional many-to-one association to Biding
 	@OneToMany(mappedBy="auction", cascade = CascadeType.ALL)
@@ -67,6 +58,7 @@ public class Auction implements Serializable {
                     }
                     return higherBid;
         }
+
 	//bi-directional many-to-one association to Comment
 	@OneToMany(mappedBy="auction", cascade = CascadeType.ALL)
 	private List<Comment> comments;
@@ -149,12 +141,12 @@ public class Auction implements Serializable {
 		this.subcategory = subcategory;
 	}
 
-	public List<User> getUsers() {
-		return this.users;
+	public User getUser() {
+		return this.user;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public List<Biding> getBidings() {

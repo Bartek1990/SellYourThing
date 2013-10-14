@@ -5,7 +5,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://primefaces.org/ui">
 
     <head>
         <link rel="stylesheet" type="text/css" href="../style/main.css" />
@@ -18,10 +18,41 @@
                         <div class="auctionInProgressHeader">
                             <div class="header">AUKCJE W TOKU</div>
                         </div>
-                        <div class="auctions">
-                            Lista linków do aukcji licytowanych i lista linków do sprzedawanych mozna podac aktualna cene itp. Proponuję tutaj użyć taga dataTable. Tutki w necie
-                        </div>
                         <h:messages class="messages"/>
+                        <h:form id="aucForm">
+                            <p:fieldset legend="Dostępne aukcje">
+                                <p:dataTable id="availableAuctions" var="auction" value="#{auctionsToolsBean.actAuctions}"
+                                             rowStyleClass="#{auction.expDate.before(auctionsToolsBean.todaysDate()) ? 'background-color: red' : null}">
+
+                                    <p:column sortBy="#{auction.title}" headerText="Tytuł">
+                                        <h:outputText value="#{auction.title}" />
+                                    </p:column>
+
+                                    <p:column sortBy="#{auction.expDate.before(auctionsToolsBean.todaysDate()) ? 'Zakończona' : 'Trwa'}" headerText="Status">
+                                        <h:outputText value="#{auction.expDate.before(auctionsToolsBean.todaysDate()) ? 'Zakończona' : 'Trwa'}" />
+                                    </p:column>
+
+                                    <p:column headerText="Typ">
+                                        <h:outputText value="#{auction.type eq 1 ? 'Licytacja': null}" />
+                                    </p:column>
+
+                                    <p:column headerText="Zakończenie">
+                                        <h:outputText value="#{auction.expDate.toLocaleString()}" />
+                                    </p:column>
+
+                                    <p:column sortBy="#{auction.higherBid}" headerText="Cena">
+                                        <h:outputText value="#{auction.higherBid}" />
+                                    </p:column>
+                                    <p:column headerText="Autor">
+                                        <h:outputText value="#{auction.user.email}" />
+                                    </p:column>
+
+                                    <p:column headerText="Subkategoria">
+                                        <h:outputText value="#{auction.subcategory.subName}" />
+                                    </p:column>
+                                </p:dataTable>
+                            </p:fieldset>
+                        </h:form>
                     </div>
                 </div>
             </ui:define>
